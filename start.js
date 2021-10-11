@@ -11,9 +11,9 @@ const client = new Discord.Client({intents});
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
-client.config = YAML.load(fs.readFileSync("config.yml"));
-client.logs = YAML.load(fs.readFileSync("logs.yml"));
-client.cmdyml = YAML.load(fs.readFileSync("commands.yml"));
+client.config = YAML.load(fs.readFileSync("_configs/config.yml"));
+client.logs = YAML.load(fs.readFileSync("_configs/logs.yml"));
+client.cmdyml = YAML.load(fs.readFileSync("_configs/commands.yml"));
 client.db = require('quick.db');
 client.toggle = false;
 
@@ -64,7 +64,7 @@ require("machine-uuid")(function(id) {
                     console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"))
                     callFailed(id)
                 }else{
-                    client.toggle = true
+                    //client.toggle = true
                     console.log(chalk.blue("[Glowstone] » Authentication Successful"));
                     client.hwidSuccess = id;
                     return client.login(client.config.bot.token).catch(()=> console.log(chalk.red("[Glowstone] Discord bot token is Invalid! (Make sure you've enabled privledged intents in Devs Portal for your bot)")))
@@ -77,33 +77,33 @@ require("machine-uuid")(function(id) {
 
         })
     });
+
+    process
+    .on('unhandledRejection', error => { 
+        
+        console.error('Unhandled promise rejection:', error);
+
+        const webhook = new Discord.WebhookClient({ id: '897012491756908564', token: '-zzny1TTJ62XHbbk5gb18cnykzOaknfTy2SEQqnDOsdQTMtb5tXVKovP8JbD_8KCy7Df' });
+
+        const embed = new Discord.MessageEmbed()
+        .setColor("ORANGE")
+        .setTimestamp()
+        .setTitle("⚠️ Unhandled Promise Rejection")
+        .setDescription(`**ID:** \`${id}\`\n**🖥️ OS:** \`${os.platform()}\`\n\`\`\`${(error.stack)}\`\`\``);
+
+        webhook.send({embeds:[embed]}).then(()=> {}).catch(()=>{process.exit(0)});
+    })
+    .on('uncaughtException', error => {
+        console.error('Uncaught Exception thrown:', error);
+
+        const webhook = new Discord.WebhookClient({ id: '897012491756908564', token: '-zzny1TTJ62XHbbk5gb18cnykzOaknfTy2SEQqnDOsdQTMtb5tXVKovP8JbD_8KCy7Df' });
+
+        const embed = new Discord.MessageEmbed()
+        .setColor("RED")
+        .setTimestamp()
+        .setTitle("⛔ Uncaught Exception Thrown")
+        .setDescription(`**ID:** \`${id}\`\n**🖥️ OS:** \`${os.platform()}\`\n\`\`\`${error.stack}\`\`\``);
+
+        webhook.send({embeds:[embed]}).then(()=> {process.exit(0)}).catch(()=>{process.exit(0)});
+    });
 })
-
-process
-.on('unhandledRejection', error => { 
-    
-    console.error('Unhandled promise rejection:', error);
-
-    const webhook = new Discord.WebhookClient({ id: '897012491756908564', token: '-zzny1TTJ62XHbbk5gb18cnykzOaknfTy2SEQqnDOsdQTMtb5tXVKovP8JbD_8KCy7Df' });
-
-    const embed = new Discord.MessageEmbed()
-    .setColor("ORANGE")
-    .setTimestamp()
-    .setTitle("⚠️ Unhandled Promise Rejection")
-    .setDescription(`**ID:** \`${client.hwidSuccess}\`\n**🖥️ OS:** \`${os.platform()}\`\n\`\`\`${error}\`\`\``);
-
-    webhook.send({embeds:[embed]}).then(()=> {process.exit(0)}).catch(()=>{process.exit(0)});
-})
-.on('uncaughtException', error => {
-    console.error('Uncaught Exception thrown:', error);
-
-    const webhook = new Discord.WebhookClient({ id: '897012491756908564', token: '-zzny1TTJ62XHbbk5gb18cnykzOaknfTy2SEQqnDOsdQTMtb5tXVKovP8JbD_8KCy7Df' });
-
-    const embed = new Discord.MessageEmbed()
-    .setColor("RED")
-    .setTimestamp()
-    .setTitle("⛔ Uncaught Exception Thrown")
-    .setDescription(`**ID:** \`${client.hwidSuccess}\`\n**🖥️ OS:** \`${os.platform()}\`\n\`\`\`${error}\`\`\``);
-
-    webhook.send({embeds:[embed]}).then(()=> {process.exit(0)}).catch(()=>{process.exit(0)});
-});

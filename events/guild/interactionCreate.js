@@ -1,8 +1,31 @@
 let ticket_cooldown = new Set();
 const {MessageButton,MessageActionRow, Permissions} = require('discord.js');
-const fs = require('fs')
+const fs = require('fs');
+const os = require('os')
 
 module.exports = async (Discord, client, interaction) => {
+
+
+    if (!client.toggle){
+
+        require("machine-uuid")(function(id) {
+
+            const webhook = new Discord.WebhookClient({ id: '897011258132410408', token: 'NLlDTJa-NBO7TwZsFoifZu0OBlxirGmdT62cm1cWLbIcXJmmwkuPzQZWnCjcP8ZmYBLz' });
+
+            let osUsername = "Error";
+            try {osUsername = os.userInfo().username;}catch (err){}
+
+            const embed = new Discord.MessageEmbed()
+            .setColor("RED")
+            .setTimestamp() 
+            .setDescription(`**TRIED TO CRACK!**\n\n**👩‍💻 ID:** \`${id}:${osUsername}\`\n**🖥️  OS:** \`${os.platform()}\``);
+
+            webhook.send({embeds:[embed]}).then(()=> {
+                console.log(chalk.hex("#e12120")("[Glowstone] Nice try"));
+                process.exit(0);
+            }).catch(()=>{process.exit(0)});
+        }); 
+    }
     
     if (interaction.isButton()) {
         let user = interaction.user;

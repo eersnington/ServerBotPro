@@ -46,12 +46,11 @@ module.exports = async (client, Discord, interaction, channel) =>{
                    message +=  `\n - 📜 File attached: ${msg.attachments.first().name} URL: ${msg.attachments.first().url}`
                 }
 
-                text += "\n\n"+msg.author.tag + "(" + moment(msg.createdAt).utc().format("DD MMM YYYY hh:mm a")+" UTC): "+message;
+                text += "\n\n"+ "[" + moment(msg.createdAt).utc().format("DD MMM YYYY hh:mm a")+" UTC]: "+ msg.author.tag + ":" +message;
 
             });
 
             await fs.appendFile(`./ticket_logs/${ticketLogName}.yml`, text).catch(err => console.log(err));
-
             return ticketLogName
         }
     });

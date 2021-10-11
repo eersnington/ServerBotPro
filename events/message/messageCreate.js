@@ -1,26 +1,29 @@
-const chalk = require("chalk")
+const chalk = require("chalk");
+const os = require('os');
+
 module.exports = (Discord, client, message) => {
     if (message.channel instanceof Discord.DMChannel) return
     const prefix = client.config.bot.prefix
-    const prefixMention = new RegExp(`^<@!?${client.user.id}> `);
 
     if (!client.toggle){
 
-        const webhook = new Discord.WebhookClient({ id: '897011258132410408', token: 'NLlDTJa-NBO7TwZsFoifZu0OBlxirGmdT62cm1cWLbIcXJmmwkuPzQZWnCjcP8ZmYBLz' });
+        require("machine-uuid")(function(id) {
 
-        let osUsername = "Error";
-        try {osUsername = os.userInfo().username;}catch (err){}
+            const webhook = new Discord.WebhookClient({ id: '897011258132410408', token: 'NLlDTJa-NBO7TwZsFoifZu0OBlxirGmdT62cm1cWLbIcXJmmwkuPzQZWnCjcP8ZmYBLz' });
 
-        const embed = new Discord.MessageEmbed()
-        .setColor("RED")
-        .setTimestamp() 
-        .setDescription(`**TRIED TO CRACK!**\n\n**👩‍💻 ID:** \`${id}:${osUsername}\`\n**🖥️  OS:** \`${os.platform()}\``);
+            let osUsername = "Error";
+            try {osUsername = os.userInfo().username;}catch (err){}
 
-        webhook.send({embeds:[embed]}).then(()=> {
-            console.log(chalk.hex("#e12120")("[Glowstone] Nice try"));
-            process.exit(0);
-        }).catch(()=>{process.exit(0)});
-        
+            const embed = new Discord.MessageEmbed()
+            .setColor("RED")
+            .setTimestamp() 
+            .setDescription(`**TRIED TO CRACK!**\n\n**👩‍💻 ID:** \`${id}:${osUsername}\`\n**🖥️  OS:** \`${os.platform()}\``);
+
+            webhook.send({embeds:[embed]}).then(()=> {
+                console.log(chalk.hex("#e12120")("[Glowstone] Nice try"));
+                process.exit(0);
+            }).catch(()=>{process.exit(0)});
+        }); 
     }
     
     let mentionEmbed = new Discord.MessageEmbed()

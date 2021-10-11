@@ -28,7 +28,7 @@ branding:
 # Whitelists are users that can bypass any specific permissions required to execute a command. 
 # In short, they get full access to the bot. Right click the user and copy-paste their id in the given format.
 bot:
-  token: "ODU2MTc3MzEwMjgwMTg3OTQ1.YM9PQQ.AA9N4YwpnJxPj01QSoOGUfUt-JI"
+  token: "ODQyNjk5NTg5Mjk5NjAxNDI4.YJ5HJg.gtJ5MjSJs3xV2Bq2IHkxAaoQpSo"
   prefix: "!"
   whitelist:
     - "714736434782666752"
