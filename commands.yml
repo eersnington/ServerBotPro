@@ -1,0 +1,290 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                Glowstone Development                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+# If you want to use special characters in this document, such as accented letters, you MUST save the file as UTF-8, not ANSI.
+# If you receive an error when Server-Bot loads, ensure that:
+#   - No tabs are present: YAML only allows spaces
+#   - Indents are correct: YAML hierarchy is based entirely on indentation
+#   - You have "escaped" all apostrophes in your text: If you want to write "don't", for example, write "don''t" instead (note the doubled apostrophe)
+#   - Text with symbols is enclosed in single or double quotation marks
+#
+# We recommend you use a text editor like Sublime Text or Atom (Both windows and mac compatible) or Notepad++(Windows only) to edit this document
+# https://www.sublimetext.com/3      https://atom.io/     https://notepad-plus-plus.org/downloads/
+
+
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                Commands Permissions                  | #
+# +------------------------------------------------------+ #
+############################################################
+
+# Handle permissions for every commands here
+# You can limit a command to certain roles or certain members with a specific discord permissions.
+
+# +----------------------------------------------------------------------------------------------------------------------------------------+ #
+# Here is a list of of discord permissions you can use (There are more but these are the important ones)                                     #
+# KICK_MEMBERS, BAN_MEMBERS, ADMINISTRATOR, MANAGE_CHANNELS, MANAGE_GUILD, MANAGE_MESSAGES, MANAGE_ROLES, MANAGE_WEBHOOKS and MANAGE_EMOJIS  #
+# +----------------------------------------------------------------------------------------------------------------------------------------+ #
+
+# Read about the permissions here -> https://discord.com/developers/docs/topics/permissions
+
+# Users specified in the whitelist in config.yml file will bypass every permission check.
+# Leaving the permissions blank means anyone can use the command.
+# If you limit a command to a specific role, then only those users with that role can access it. And it doesn't matter if they have Admin permission.
+# If you limit a command to a specific discord permission, then only those users with that permission can access it. The roles don't matter.
+
+# If you specify a role AND a discord permission, then only the users with the role AND the permission will be able to use it.
+# For e.g. if you limit a command to sr mod role and ADMINISTRATOR permission, then only the srmods with the administrator permission will be able to use the command
+
+
+# +------------------------------------------------------------------+ #
+# |                           EXAMPLE                                | #
+# |      RolesRequired: ["ModeratorRoleID", "AdminRoleID"]         | #
+# |      DiscordPermissions: ["BAN_MEMBERS", "MANAGE_GUILD"]         | #
+# +------------------------------------------------------------------+ #
+
+# Note: Role permissions require the role id and not the name
+
+##################
+#----------------#
+# ADMIN COMMANDS #
+#----------------#
+##################
+
+admin:
+  create-backup: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  giveaway-end: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  giveaway-reroll: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  giveaway-start: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  info-backup: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  load-backup: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  shutdown: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+
+
+######################
+#--------------------#
+# COMMUNITY COMMANDS #
+#--------------------#
+######################
+
+
+# Suggestion: Leave these blank and let every member use these commands
+community:
+  apply: 
+    RolesRequired: []
+    DiscordPermissions: []
+  suggest: 
+    RolesRequired: []
+    DiscordPermissions: []
+
+
+################
+#--------------#
+# FUN COMMANDS #
+#--------------#
+################
+
+
+# Suggestion: Leave these blank and let every member use these commands
+fun:
+  beautiful: 
+    RolesRequired: []
+    DiscordPermissions: []
+  facepalm: 
+    RolesRequired: []
+    DiscordPermissions: []
+  slap: 
+    RolesRequired: []
+    DiscordPermissions: []
+  spank: 
+    RolesRequired: []
+    DiscordPermissions: []
+  trash: 
+    RolesRequired: []
+    DiscordPermissions: []
+  trigger: 
+    RolesRequired: []
+    DiscordPermissions: []
+  wanted: 
+    RolesRequired: []
+    DiscordPermissions: []
+
+##################
+#----------------#
+# GAMES COMMANDS #
+#----------------#
+##################
+
+# Suggestion: Leave these blank and let every member use these commands
+games:
+  connect4: 
+    RolesRequired: []
+    DiscordPermissions: []
+  fight: 
+    RolesRequired: []
+    DiscordPermissions: []
+  football: 
+    RolesRequired: []
+    DiscordPermissions: []
+  gunfight: 
+    RolesRequired: []
+    DiscordPermissions: []
+  quickclick: 
+    RolesRequired: []
+    DiscordPermissions: []
+  rps: 
+    RolesRequired: []
+    DiscordPermissions: []
+  snake: 
+    RolesRequired: []
+    DiscordPermissions: []
+  tictactoe: 
+    RolesRequired: []
+    DiscordPermissions: []
+  trivia: 
+    RolesRequired: []
+    DiscordPermissions: []
+
+#######################
+#---------------------#
+# MODERATION COMMANDS #
+#---------------------#
+#######################
+moderation:
+  anti-join: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  ban: 
+    RolesRequired: []
+    DiscordPermissions: ["BAN_MEMBERS"]
+  kick: 
+    RolesRequired: []
+    DiscordPermissions: ["KICK_MEMBERS"]
+  lock: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD", "MANAGE_CHANNELS"]
+  mute: 
+    RolesRequired: []
+    DiscordPermissions: ["KICK_MEMBERS"]
+  purge: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]
+  slowmode: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]
+  tempban: 
+    RolesRequired: []
+    DiscordPermissions: ["BAN_MEMBERS"]
+  unban: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD","BAN_MEMBERS"]
+  unlock: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD", "MANAGE_CHANNELS"]
+  unmute: 
+    RolesRequired: []
+    DiscordPermissions: ["KICK_MEMBERS"]
+
+###################  
+#-----------------#
+# TICKET COMMANDS #
+#-----------------#
+###################
+
+ # By default, only the users with "ticket_access" role mentioned in config.yml has access to these commands
+tickets:
+  ticket-add: 
+    RolesRequired: [] 
+    DiscordPermissions: []
+  ticket-menu: 
+    RolesRequired: []
+    DiscordPermissions: []
+  ticket-panel: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  ticket-remove: 
+    RolesRequired: [] 
+    DiscordPermissions: []
+  ticket-rename: 
+    RolesRequired: [] 
+    DiscordPermissions: []
+
+##################
+#----------------#
+# STAFF COMMANDS #
+#----------------#
+##################
+staff:
+  assign: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  demote: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  hire: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  promote: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  resign: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  
+
+
+######################
+#--------------------#
+# UTILITIES COMMANDS #
+#--------------------#
+######################
+utilities:
+  botinfo: 
+    RolesRequired: []
+    DiscordPermissions: []
+  calculator: 
+    RolesRequired: []
+    DiscordPermissions: []
+  embed: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  emoteid: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  help: 
+    RolesRequired: []
+    DiscordPermissions: []
+  message: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
+  poll: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  serverinfo: 
+    RolesRequired: []
+    DiscordPermissions: []
+  steal-emoji: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  userinfo: 
+    RolesRequired: []
+    DiscordPermissions: []

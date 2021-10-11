@@ -1,0 +1,157 @@
+############################################################
+# +------------------------------------------------------+ #
+# |                Glowstone Development                 | #
+# +------------------------------------------------------+ #
+############################################################
+
+# If you want to use special characters in this document, such as accented letters, you MUST save the file as UTF-8, not ANSI.
+# If you receive an error when Server-Bot loads, ensure that:
+#   - No tabs are present: YAML only allows spaces
+#   - Indents are correct: YAML hierarchy is based entirely on indentation
+#   - You have "escaped" all apostrophes in your text: If you want to write "don't", for example, write "don''t" instead (note the doubled apostrophe)
+#   - Text with symbols is enclosed in single or double quotation marks
+#
+# We recommend you use a text editor like Sublime Text or Atom Text Editor (Both windows and mac compatible) or Notepad++(Windows only) to edit this document
+# https://www.sublimetext.com/3      https://atom.io/     https://notepad-plus-plus.org/downloads/
+
+
+
+
+# Basic server info. Will be mostly used in Discord Embeds
+branding:
+  store: "https://glowstonedev.tebex.io/"
+  ip: "glowstonedev.tebex.io"
+  name: "Glowstone Development"
+  embed_color: "#2f3136"
+
+
+# Whitelists are users that can bypass any specific permissions required to execute a command. 
+# In short, they get full access to the bot. Right click the user and copy-paste their id in the given format.
+bot:
+  token: "ODU2MTc3MzEwMjgwMTg3OTQ1.YM9PQQ.AA9N4YwpnJxPj01QSoOGUfUt-JI"
+  prefix: "!"
+  whitelist:
+    - "714736434782666752"
+
+
+# Suggestions channel where new suggestions will get sent to
+suggestions_channel: "861787498762076180"
+
+
+##################################################
+# +--------------------------------------------+ #
+# |                   Roles                    | #
+# +--------------------------------------------+ #
+##################################################
+
+# The promotion system works by specifying a promotion path (or staff movement track) in here. 
+# The top most role should be the member role. It will be given to everymember upon joining
+# Next below is the helper role, then the moderator, then the admin.
+# In order to promote or demote a staff, their highest colored role should be in here. Or it wont work.
+
+join_role: "856035189695315978" # The role given to users upon joining
+
+# These are the roles that the bot will not be able to add or remove with .promote/.demote/.hire/.assign commands
+# You should add the owner or the * role here to prevent people from giving dangerous roles to users or their alts.
+blacklisted_roles:
+  - "855869726328356894"
+  - "855868640674578463"
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                   Welcome Message                    | #
+# +------------------------------------------------------+ #
+############################################################
+
+# List of placeholders
+# %USERNAME% - Username with discriminator
+# %USERTAG% - The @ user tag
+# %USER_AVATAR% - User's avatar/profile picture
+# %SERVER_ICON% - Server icon
+# %#CHANNEL_ID% - Mention a channel, for e.g %#2342342342354353%
+# %TOTAL_MEMBERS% - Server member count
+# %STORE% - Link to the store given above
+# %IP% - Given IP above.
+# \n starts the text at a new line.
+# Note: If you leave any blank like this -> "" then it will not be added to the embed.
+welcome_settings:
+  welcome_message: true
+  welcome_channel_id: "855868417721499691"
+  embed_title: "Welcome to Glowstone Development"
+  embed_description: "**%USERNAME%** has joined the server\n\nWelcome to Glowstone Development\n\n**➠ Store:** %STORE%\n**➠ Total members:** %TOTAL_MEMBERS%\n**➠ Products:** %#872886189164732446%"
+  embed_thumbnail: "%USER_AVATAR%" # You can only use an image link or %USER_AVATAR% and %SERVER_ICON%.
+  embed_image: "" # You can only use an image link or %USER_AVATAR% and %SERVER_ICON%. 
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Tickets                        | #
+# +------------------------------------------------------+ #
+############################################################
+
+
+ticket_settings:
+  ticket_access: "856033546450763796" # Users with this role will be added to new tickets. All staff members should have this role to be added to tickets
+  ticket_panel_title: "🎟️ Tickets"
+  ticket_panel_message: "__**How to make a ticket**__\n> Click on the button below to create a ticket\n> Once the ticket is made you will be able to type in there"
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                     Application                      | #
+# +------------------------------------------------------+ #
+############################################################
+
+
+application_settings:
+  applications_channel: "862175877794103306" # Submitted applications gets sent here
+  questions: 
+    - "What is your age?"
+    - "What is your timezone?"
+    - "If you were in a situation that you didn't know how to handle, what would you do?"
+    - "How much time can you dedicate to your staff duties in hours / week?"
+    - "Are you familiar with installing and handling our services(or similar servics)? If yes, then list a few of them."
+    - "What all experience(s) you have with different programming languages?"
+    - "Have you ever been staff on any other servers? If so, what kind of experience do you have?"
+  accepted_response: "Hey your application was reviewed by the management, and we would like to inform you that your application has been accepted.\nPlease message an Admin to get started with your interview."
+  rejected_response: "Hey your application was reviewed by the management, and we are sorry to inform you that your application has been rejected."
+
+
+############################################################
+# +------------------------------------------------------+ #
+# |                       Auto Mod                       | #
+# +------------------------------------------------------+ #
+############################################################
+
+# whitelisted users bypass this
+automod_settings:
+  ignore_bots: true # Ignores bots (ignores the serverbot by default)
+  min_age: '31d' # Minimum age of an account required to join the server
+  links:
+    enabled: true
+    allow_youtube: true # Doesn't trigger automod if the link is from YT
+    ignored_links: ["https://glowstonedev.tebex.io/", "https://discord.gg/pYXsJxkBU3", "discord.gg/pYXsJxkBU3"]
+    ignored_channels: ["856545475372384258", "channel-id-2"] # Will not automoderate in these channels
+    ignored_users: ["user-id-1", "user-id-2"] # Will not automoderate these users
+    punishment: ["Mute", "1h"] # Format [Punishment type, duration], Available options "Mute", "Kick" or "Ban" (case sensitive). In duration, if you type "null", then it will be permanent
+  profanity:
+    enabled: true
+    list: ["nigger", "chink", "nigga"] # List of blacklisted words.
+    ignored_channels: ["channel-id-1", "channel-id-2"]
+    ignored_users: ["user-id-1", "user-id-2"]
+    punishment: ["Mute", "1h"] 
+  anti_spam:
+    enabled: true # Will trigger for wall of text, mass mentions and 
+    message_threshold: 5 # Amount of messages sent in a row that will result in a punishment.
+    mass_mention_limit: 5 # Amount of mentions in a message that will result in a punishment.
+    max_interval: "5s" # Amount of time in which messages are considered spam.
+    ignored_channels: ["channel-id-1", "channel-id-2"]
+    ignored_users: ["user-id-1", "user-id-2"]
+    punishment: ["1h"] # Only mute option is available here
+  ip: # Check if some1 sent ips in chat
+    enabled: true
+    ignored_channels: ["channel-id-1", "channel-id-2"]
+    ignored_users: ["user-id-1", "user-id-2"]
+    punishment: ["Mute", "12h"]
+    
