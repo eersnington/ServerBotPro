@@ -9,7 +9,7 @@ module.exports = async (Discord, client, role, oldPermissions, newPermissions) =
         .setThumbnail(channel.guild.iconURL({dynamic: true}))
         .setDescription(
             `__**Role permissions update**__\n
-            \`${role.name}\` had as permissions \`${oldPermissions}\` and now has as permissions \`${newPermissions}\``
+            \`${role.name}\` had permissions \`${oldPermissions}\` and now has permissions \`${newPermissions}\``
         )
         .setTitle(`📋 Logs`)
         .setTimestamp()

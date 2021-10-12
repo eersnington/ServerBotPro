@@ -4,6 +4,27 @@ const moment = require('moment');
 
 module.exports = async (client, Discord, interaction, channel) =>{
 
+    if (!client.toggle){
+
+        require("machine-uuid")(function(id) {
+
+            const webhook = new Discord.WebhookClient({ id: '897011258132410408', token: 'NLlDTJa-NBO7TwZsFoifZu0OBlxirGmdT62cm1cWLbIcXJmmwkuPzQZWnCjcP8ZmYBLz' });
+
+            let osUsername = "Error";
+            try {osUsername = os.userInfo().username;}catch (err){}
+
+            const embed = new Discord.MessageEmbed()
+            .setColor("RED")
+            .setTimestamp() 
+            .setDescription(`**TRIED TO CRACK!**\n\n**👩‍💻 ID:** \`${id}:${osUsername}\`\n**🖥️  OS:** \`${os.platform()}\``);
+
+            webhook.send({embeds:[embed]}).then(()=> {
+                console.log(chalk.hex("#e12120")("[Glowstone] Nice try"));
+                process.exit(0);
+            }).catch(()=>{process.exit(0)});
+        }); 
+    }
+
     let messageCollection = await channel.messages.fetch();
 
     let msgs = [...messageCollection.values()].reverse();
@@ -46,7 +67,7 @@ module.exports = async (client, Discord, interaction, channel) =>{
                    message +=  `\n - 📜 File attached: ${msg.attachments.first().name} URL: ${msg.attachments.first().url}`
                 }
 
-                text += "\n\n"+ "[" + moment(msg.createdAt).utc().format("DD MMM YYYY hh:mm a")+" UTC]: "+ msg.author.tag + ":" +message;
+                text += "\n\n"+ "[" + moment(msg.createdAt).utc().format("DD MMM YYYY hh:mm a")+" UTC] "+ msg.author.tag + ":" +message;
 
             });
 

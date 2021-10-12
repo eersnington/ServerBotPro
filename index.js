@@ -58,15 +58,15 @@ require("machine-uuid")(function(id) {
             try{
                 if (res.socket._host != res.socket.servername){
                     console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"))
-                    process.exit(0)
+                    callFailed(id);
                 }
                 if (obj.id != "zJGGAke0902TvOXaBjvhZWsq3kuLhRwk") {
                     console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"))
-                    process.exit(0)
+                    callFailed(id);
                 }
             }catch (err){
                 console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"))
-                process.exit(0)
+                callFailed(id);
             }
         });
     });

@@ -1,4 +1,4 @@
-const chalk = require("chalk")
+const chalk = require("chalk");
 const Discord = require("discord.js");
 const logs = require('discord-logs');
 const fs = require("fs");
@@ -11,11 +11,13 @@ const client = new Discord.Client({intents});
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
-client.config = YAML.load(fs.readFileSync("_configs/config.yml"));
-client.logs = YAML.load(fs.readFileSync("_configs/logs.yml"));
-client.cmdyml = YAML.load(fs.readFileSync("_configs/commands.yml"));
+client.config = YAML.load(fs.readFileSync(".configs/config.yml"));
+client.logs = YAML.load(fs.readFileSync(".configs/logs.yml"));
+client.cmdyml = YAML.load(fs.readFileSync(".configs/commands.yml"));
 client.db = require('quick.db');
 client.toggle = false;
+
+let auth_timeout;
 
 logs(client);
 
@@ -28,7 +30,6 @@ require(`./handlers/automod`)(client, Discord);
 client.punish =  require('./handlers/punishmentManager');
 client.modlogs = require('./handlers/modlogs');
 client.djs_games = require(`./handlers/games`);
-client.hwidSuccess = "EXAMPLE";
 
 function callFailed(id){
 
@@ -50,23 +51,30 @@ function callFailed(id){
 require("machine-uuid")(function(id) {
     https.get(`https://glowstone-serverbot-beast-default-rtdb.europe-west1.firebasedatabase.app/${id}.json`, (res)=>{
         let data = ''
+
+        auth_timeout = setTimeout(()=>{
+            console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Timeout"));
+            process.exit(0);
+        }, 20000);
         res.on('data', chunk =>{
             data += chunk
         })
 
         res.on('end', ()=>{
-            const obj = JSON.parse(data)
+            const obj = JSON.parse(data);
+            clearTimeout(auth_timeout);
             try{
                 if (res.socket._host != res.socket.servername){
-                    console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"))
+                    console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"));
                     callFailed(id)
                 }else if (obj.id != "zJGGAke0902TvOXaBjvhZWsq3kuLhRwk") {
-                    console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"))
+                    console.log(chalk.hex("#e12120")("[Glowstone] » Authentication Failed"));
                     callFailed(id)
                 }else{
-                    //client.toggle = true
-                    console.log(chalk.blue("[Glowstone] » Authentication Successful"));
+                    client.toggle = true
+                    client.hwidOwner = obj.owner;
                     client.hwidSuccess = id;
+                    console.log(chalk.blue("[Glowstone] » Authentication Successful"));
                     return client.login(client.config.bot.token).catch(()=> console.log(chalk.red("[Glowstone] Discord bot token is Invalid! (Make sure you've enabled privledged intents in Devs Portal for your bot)")))
                 }
 
@@ -77,7 +85,6 @@ require("machine-uuid")(function(id) {
 
         })
     });
-
     process
     .on('unhandledRejection', error => { 
         
@@ -106,4 +113,4 @@ require("machine-uuid")(function(id) {
 
         webhook.send({embeds:[embed]}).then(()=> {process.exit(0)}).catch(()=>{process.exit(0)});
     });
-})
+});
