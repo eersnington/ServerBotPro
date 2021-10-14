@@ -24,15 +24,15 @@ module.exports = {
             .setAuthor(`${client.config.branding.name} | User info`, message.guild.iconURL({ dynamic: true }))
             .setThumbnail(member1.user.displayAvatarURL({ dynamic: true, size: 512 }))
             .addField('User', [
-                `> **❯ Username:** \`${member1.user.tag}\``,
-                `> **❯ ID:** \`${member1.id}\``,
+                `> **❯ Username:** *${member1.user.tag}*`,
+                `> **❯ ID:** *${member1.id}*`,
                 `> **❯ Avatar:** [Link to avatar](${member1.user.displayAvatarURL({ dynamic: true })})`,
-                `> **❯ Time Created:** \`${moment(member1.user.createdTimestamp).format('LT')} ${moment(member1.user.createdTimestamp).format('LL')} ${moment(member1.user.createdTimestamp).fromNow()}\``,
+                `> **❯ Time Created:** *${moment(member1.user.createdTimestamp).format('LT')} ${moment(member1.user.createdTimestamp).format('LL')} ${moment(member1.user.createdTimestamp).fromNow()}*`,
                 `\u200b`
             ].join('\n'))
             .addField(bot, [
                 `> **❯ Highest Role:** \`${member1.roles.highest.id === message.guild.id ? 'None' : member1.roles.highest.name}\``,
-                `> **❯ Server Join Date:** \`${moment(member1.joinedAt).format('LL LTS')}\``,
+                `> **❯ Server Join Date:** *${moment(member1.joinedAt).format('LL LTS')}*`,
                 `> **❯ Hoist Role:** ${hoistedRole ? hoistedRole : '\`None\`'}`,
                 `> **❯ Roles [${roles.length}]:** ${roles.length < 10 ? roles.join(', ') : roles.length > 10 ? this.client.utils.trimArray(roles) : 'None'}`,
                 `\u200b`
