@@ -11,7 +11,7 @@ module.exports = {
 
         const opponent = message.mentions.users.first();
 
-        if (!opponent) return message.reply("**You need to mention an opponet!**");
+        if (!opponent) return message.reply("**You need to mention an opponent!**");
         if (opponent.id == message.author.id) return message.reply("**You can't play it with your self**");
 
 		const positions = {
