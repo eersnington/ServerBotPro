@@ -10,12 +10,13 @@ module.exports = async (Discord, client, message) => {
     const embed1 = new Discord.MessageEmbed()
         .setColor(client.config.branding.embed_color)
         .setAuthor(client.config.branding.name, message.guild.iconURL({dynamic: true}))
-        .setThumbnail(message.guild.iconURL())
+        .setThumbnail(message.guild.iconURL({dynamic: true}))
         .setDescription(
             `__**Message deleted**__\n
             **Channel: ** \`${message.channel.name}\`
-            **User:** <@${message.author.id}>
-            **Message:** \n\`${messageContent}\``
+            **User:** ${message.author.tag}
+            **ID:** ${message.author.id}
+            **Message:** \n${messageContent.substring(0, 1000)}`
         )
         .setTitle(`📋 Logs`)
         .setTimestamp()

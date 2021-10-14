@@ -6,10 +6,11 @@ module.exports = async (Discord, client, member) => {
     const embed1 = new Discord.MessageEmbed()
         .setColor(client.config.branding.embed_color)
         .setAuthor(client.config.branding.name, member.guild.iconURL({dynamic: true}))
-        .setThumbnail(member.user.displayAvatarURL())
+        .setThumbnail(member.user.displayAvatarURL({dynamic: true}))
         .setDescription(
             `__**Server unboost**__\n
-            <@${member.user.id}> has just unboosted the server`
+            **User:** \`${member.user.tag}\`
+            **ID:** \`${member.user.id}\``
         )
         .setTitle(`📋 Logs`)
         .setTimestamp()

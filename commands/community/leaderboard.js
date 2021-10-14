@@ -9,6 +9,6 @@ module.exports = {
     requiredPerms: [],
     async execute(client, Discord, message, args){
 
-        message.channel.send("WIP")
+        message.channel.send("WIP");
     }
 }

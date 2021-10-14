@@ -7,7 +7,7 @@ const https = require('https');
 const os = require("os");
 
 const intents = new Discord.Intents(32727);
-const client = new Discord.Client({intents});  
+const client = new Discord.Client({intents: intents, partials: ['MESSAGE', 'CHANNEL', 'REACTION']});  
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
@@ -26,7 +26,7 @@ require(`./handlers/command`)(client, Discord);
 require(`./handlers/events`)(client, Discord);
 require(`./handlers/giveaways`)(client, Discord);
 require(`./handlers/automod`)(client, Discord);
-//require(`./handlers/inviteTracker`)(client, Discord);
+require(`./handlers/reactionRole`)(client, Discord);
 client.punish =  require('./handlers/punishmentManager');
 client.modlogs = require('./handlers/modlogs');
 client.djs_games = require(`./handlers/games`);

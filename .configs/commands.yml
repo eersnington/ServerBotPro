@@ -75,6 +75,9 @@ admin:
   load-backup: 
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
+  reactionrole: 
+    RolesRequired: []
+    DiscordPermissions: ["ADMINISTRATOR"]
   shutdown: 
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]

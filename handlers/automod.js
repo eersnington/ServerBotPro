@@ -4,7 +4,6 @@ const onlyEmoji = require('emoji-aware').onlyEmoji;
 const ipRegex = require('ip-regex');
 const chalk = require('chalk');
 const os = require('os');
-const fs = require('fs');
 const moment = require('moment');
 
 const userMap = new Map();
@@ -69,7 +68,7 @@ module.exports = (client, Discord) =>{
             if (content.match(urlRE)){
 
                 const whitelistLinks = client.config.automod_settings.links.ignored_domains;
-                if (whitelistlinks.includes(content.match(urlRE)[3])) return;
+                if (whitelistLinks.includes(content.match(urlRE)[3])) return;
 
                 message.delete();
                 let messageContent = (content.length > 100) ? content.substring(0, 100) : content;

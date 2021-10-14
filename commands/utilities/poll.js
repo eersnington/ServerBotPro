@@ -1,4 +1,4 @@
-var onlyEmoji = require('emoji-aware').onlyEmoji;
+const onlyEmoji = require('emoji-aware').onlyEmoji;
 
 module.exports = {
     name: 'poll',

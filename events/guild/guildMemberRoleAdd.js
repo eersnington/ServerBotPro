@@ -12,10 +12,10 @@ module.exports = async (Discord, client, member, role) => {
     const embed1 = new Discord.MessageEmbed()
         .setColor(client.config.branding.embed_color)
         .setAuthor(client.config.branding.name, member.guild.iconURL({dynamic: true}))
-        .setThumbnail(member.user.displayAvatarURL())
+        .setThumbnail(member.user.displayAvatarURL({dynamic: true}))
         .setDescription(
             `__**Role add**__\n
-            <@${member.user.id}> acquired the role: \`${role.name}\` from <@${logs.entries.first().executor.id}>`
+            <@${member.user.id}> \`(${member.user.tag})\` acquired the role: \`${role.name}\` from <@${logs.entries.first().executor.id}>`
         )
         .setTitle(`📋 Logs`)
         .setTimestamp()
