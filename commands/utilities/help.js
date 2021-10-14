@@ -283,8 +283,10 @@ module.exports = {
                 });
                 const foundEmbed = new Discord.MessageEmbed()
                     .setAuthor(`Command Info » ${command.name}`, message.guild.iconURL({ dynamic: true }))
-                    .setDescription(`**❯ Name:** \`${command.name}\`\n**❯ Aliases:** \`${command.aliases.join('\`, \` ') ? command.aliases : "No Aliases"}\`\n**❯ Usage:** \`${client.config.bot.prefix}${command.usage}\`\n**❯ Description:** \`${command.description}\`\n**❯ User Roles:** ${roles.join(', ') ? roles : "\`No Roles Required\`"}\n**❯ User Permissions:** \`${command.requiredPerms.join('\`, \` ') ? command.requiredPerms : "No User Permissions"}\`\n\n<> = Required | [] = Optional`)
+                    .setDescription(`> **❯ Name:** \`${command.name}\`\n> **❯ Aliases:** \`${command.aliases.join('\`, \` ') ? command.aliases : "No Aliases"}\`\n> **❯ Usage:** \`${client.config.bot.prefix}${command.usage}\`\n> **❯ Description:** \`${command.description}\`\n> **❯ User Roles:** ${roles.join(', ') ? roles : "\`No Roles Required\`"}\n> **❯ User Permissions:** \`${command.requiredPerms.join('\`, \` ') ? command.requiredPerms : "No User Permissions"}\`\n`)
+                    .setFooter('<> = Required | [] = Optional')
                     .setColor(client.config.branding.embed_color)
+                    .setTimestamp()
                     message.channel.send({embeds: [foundEmbed]});
             }
         }

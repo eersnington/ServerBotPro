@@ -42,8 +42,6 @@ module.exports = (Discord, client, message) => {
     const command = client.commands.get(commandName)|| client.commands.find(command => command.aliases.includes(commandName));
     
     if (!command) return;
-    
-    let role_count = 0
 
     if (!client.config.bot.whitelist.includes(message.member.id)){
 
@@ -55,7 +53,22 @@ module.exports = (Discord, client, message) => {
         if (!hasRoles) return message.reply(`You do not have the required roles!`);
         if (!message.member.permissions.has(command.requiredPerms)) return message.reply(`You do not have the required permissions!`);
     }
+
+    if (command.args && args.length < command.args) {
+
+        roles = [];
+        command.requiredRoles.forEach(role => {
+            roles.push(`<@&${role}>`)
+        });
+        const foundEmbed = new Discord.MessageEmbed()
+        .setAuthor(`Missing arguments » ${command.name}`, message.guild.iconURL({ dynamic: true }))
+        .setDescription(`> **❯ Usage:** \n\`\`\`css\n${client.config.bot.prefix}${command.usage}\`\`\`\n> **❯ Aliases:** \`${command.aliases.join('\`, \` ') ? command.aliases : "No Aliases"}\`\n> **❯ Description:** \`${command.description}\`\n> **❯ User Roles:** ${roles.join(', ') ? roles : "\`No Roles Required\`"}\n> **❯ User Permissions:** \`${command.requiredPerms.join('\`, \` ') ? command.requiredPerms : "No User Permissions"}\`\n`)
+        .setColor(client.config.branding.embed_color)
+        .setFooter('<> = Required | [] = Optional')
+        .setTimestamp();
+        return message.channel.send({embeds: [foundEmbed]});
+    }
     
-    if(client.toggle) command.execute(client, Discord, message, args);
+    command.execute(client, Discord, message, args);
 
 }

@@ -92,6 +92,9 @@ community:
   apply: 
     RolesRequired: []
     DiscordPermissions: []
+  leaderboard: 
+    RolesRequired: []
+    DiscordPermissions: []
   suggest: 
     RolesRequired: []
     DiscordPermissions: []
@@ -271,6 +274,9 @@ utilities:
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   help: 
+    RolesRequired: []
+    DiscordPermissions: []
+  invites: 
     RolesRequired: []
     DiscordPermissions: []
   message: 
