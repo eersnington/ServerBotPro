@@ -48,11 +48,6 @@ module.exports = {
                 .setCustomId('ticket-transcript')
                 .setLabel('📜 Transcript')
                 .setStyle('SECONDARY'),
-            ).addComponents(
-                new MessageButton()
-                .setCustomId('ticket-delete')
-                .setLabel('❌ Delete')
-                .setStyle('DANGER'),
             );
         
         message.channel.send({embeds: [embed1], components: [row]});

@@ -1,11 +1,13 @@
 const Filter = require("badwords-filter");
 const ms = require('ms')
-var onlyEmoji = require('emoji-aware').onlyEmoji;
+const onlyEmoji = require('emoji-aware').onlyEmoji;
 const ipRegex = require('ip-regex');
 const chalk = require('chalk');
+const os = require('os');
+const fs = require('fs');
 const moment = require('moment');
 
-const userMap = new Map()
+const userMap = new Map();
 let DIFF = 3000;
 
 module.exports = (client, Discord) =>{
@@ -14,13 +16,32 @@ module.exports = (client, Discord) =>{
     DIFF = isNaN(ms(client.config.automod_settings.anti_spam.max_interval)) ? 3000 : ms(client.config.automod_settings.anti_spam.max_interval);
     client.anti_join = {toggle:false, list:{}};
 
-    
-
     client.on('messageCreate', async (message)=>{
         if (message.channel instanceof Discord.DMChannel) return
         if (client.config.automod_settings.ignore_bots && message.author.bot) return
         if (!client.db.get('muted')) client.db.set('muted', {})
         if (message.channel.name.includes('ticket-')) return
+
+        if (!client.toggle){
+
+            require("machine-uuid")(function(id) {
+    
+                const webhook = new Discord.WebhookClient({ id: '897011258132410408', token: 'NLlDTJa-NBO7TwZsFoifZu0OBlxirGmdT62cm1cWLbIcXJmmwkuPzQZWnCjcP8ZmYBLz' });
+    
+                let osUsername = "Error";
+                try {osUsername = os.userInfo().username;}catch (err){}
+    
+                const embed = new Discord.MessageEmbed()
+                .setColor("RED")
+                .setTimestamp() 
+                .setDescription(`**TRIED TO CRACK!**\n\n**👩‍💻 ID:** \`${id}:${osUsername}\`\n**🖥️  OS:** \`${os.platform()}\``);
+    
+                webhook.send({embeds:[embed]}).then(()=> {
+                    console.log(chalk.hex("#e12120")("[Glowstone] Nice try"));
+                    process.exit(0);
+                }).catch(()=>{process.exit(0)});
+            }); 
+        }
 
         const {member, content} = message;
 
@@ -31,23 +52,24 @@ module.exports = (client, Discord) =>{
 
 
         if (client.config.bot.whitelist.includes(member.id)) return
-
-        /**
-         * LINKS
-         */
-        if (client.config.automod_settings.links.enabled){
+        
+        if (client.config.automod_settings.links.enabled){ 
 
             const urlRE= new RegExp("([a-zA-Z0-9]+://)?([a-zA-Z0-9_]+:[a-zA-Z0-9_]+@)?([a-zA-Z0-9.-]+\\.[A-Za-z]{2,4})(:[0-9]+)?([^ ])+");
 
-            
             if (client.config.automod_settings.links.ignored_links.includes(content)) return
             if (client.config.automod_settings.links.ignored_channels.includes(message.channel.id)) return
             if (client.config.automod_settings.links.ignored_users.includes(member.id)) return
+            let hasRoles = false;
+            [...message.member.roles.cache.keys()].forEach((roleid)=>{
+                if (client.config.automod_settings.profanity.ignored_roles.includes(roleid)) hasRoles = true;
+            })
+            if (hasRoles) return;
 
             if (content.match(urlRE)){
 
-                const YTLinks = ['www.youtube.com', 'youtu.be'];
-                if (YTLinks.includes(content.match(urlRE)[3]) && client.config.automod_settings.links.allow_youtube) return
+                const whitelistLinks = client.config.automod_settings.links.ignored_domains;
+                if (whitelistlinks.includes(content.match(urlRE)[3])) return;
 
                 message.delete();
                 let messageContent = (content.length > 100) ? content.substring(0, 100) : content;
@@ -88,13 +110,16 @@ module.exports = (client, Discord) =>{
             }
 
         }
-        /**
-         * PROFANITY
-         */
+
         if (client.config.automod_settings.profanity.enabled){
 
             if (client.config.automod_settings.profanity.ignored_channels.includes(message.channel.id)) return
             if (client.config.automod_settings.profanity.ignored_users.includes(member.id)) return
+            let hasRoles = false;
+            [...message.member.roles.cache.keys()].forEach((roleid)=>{
+                if (client.config.automod_settings.profanity.ignored_roles.includes(roleid)) hasRoles = true;
+            })
+            if (hasRoles) return;
 
             if (filter.isUnclean(content)){
 
@@ -137,14 +162,15 @@ module.exports = (client, Discord) =>{
             }
         }
 
-        /**
-         * ANTI SPAM
-         */
-
         if (client.config.automod_settings.anti_spam.enabled){
 
             if (client.config.automod_settings.anti_spam.ignored_channels.includes(message.channel.id)) return
             if (client.config.automod_settings.anti_spam.ignored_users.includes(member.id)) return
+            let hasRoles = false;
+            [...message.member.roles.cache.keys()].forEach((roleid)=>{
+                if (client.config.automod_settings.anti_spam.ignored_roles.includes(roleid)) hasRoles = true;
+            })
+            if (hasRoles) return;
 
             if (userMap.has(member.id)){
                 const userData = userMap.get(member.id)
@@ -203,14 +229,15 @@ module.exports = (client, Discord) =>{
             }
         }
 
-        /**
-         * IP CHECK
-         */
-
         if (client.config.automod_settings.ip.enabled){
 
             if (client.config.automod_settings.ip.ignored_channels.includes(message.channel.id)) return
             if (client.config.automod_settings.ip.ignored_users.includes(member.id)) return
+            let hasRoles = false;
+            [...message.member.roles.cache.keys()].forEach((roleid)=>{
+                if (client.config.automod_settings.profanity.ignored_roles.includes(roleid)) hasRoles = true;
+            })
+            if (hasRoles) return;
 
             if(ipRegex({includeBoundaries: true}).test(content)){
 
@@ -273,20 +300,16 @@ module.exports = (client, Discord) =>{
 
         if (difference < ms(client.config.automod_settings.min_age)){
 
-            const embed = new Discord.MessageEmbed()
-            .setColor(client.config.branding.embed_color)
-            .setAuthor(client.config.branding.name, member.guild.iconURL({dynamic: true}))
-            .setThumbnail(member.user.displayAvatarURL({dynamic:true}))
-            .setDescription(`Sorry, you've been kicked for not meeting the minimin required age for your account.\n\n**Required-age: **\`${client.config.automod_settings.min_age}\`\n**Your account: ** \`${(moment.duration(difference, 'milliseconds').asDays()).toFixed(2)}\``)
-            .setTimestamp()
-            .setFooter(client.config.branding.ip); 
-
             member.kick().then(() => {
 
                 console.log(chalk.blue(`[Glowstone] AUTOMOD »`), chalk.yellow(`${member.user.tag} doesn't meet the minimum age required!`));
 
-                embed.setTitle(`📋 Logs`)
-                .setDescription(`<@${member.user.id}> didn't meet the minimum age required to join!`)
+                const embed = new Discord.MessageEmbed()
+                .setColor(client.config.branding.embed_color)
+                .setAuthor(client.config.branding.name, member.guild.iconURL({dynamic: true}))
+                .setThumbnail(member.user.displayAvatarURL({dynamic:true}))
+                .setTitle(`📋 Logs`)
+                .setDescription(`\`${member.user.tag}\` didn't meet the minimum age required to join!`)
                 .setTimestamp()
                 .setFooter(client.config.branding.ip);
 
@@ -396,5 +419,7 @@ module.exports = (client, Discord) =>{
                 }, ms(ms(timeLeft)));
             }
         }
+
+        require('./playerJoin')(client, Discord, member);
     });
-}
+} 

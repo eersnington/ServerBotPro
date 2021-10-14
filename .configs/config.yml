@@ -28,7 +28,7 @@ branding:
 # Whitelists are users that can bypass any specific permissions required to execute a command. 
 # In short, they get full access to the bot. Right click the user and copy-paste their id in the given format.
 bot:
-  token: "ODQyNjk5NTg5Mjk5NjAxNDI4.YJ5HJg.gtJ5MjSJs3xV2Bq2IHkxAaoQpSo"
+  token: "ODgwNjQxMjA2NzI2NTYxODUz.YShPCQ.fA_zyiwjkt5__k8OvifBgihTPTI"
   prefix: "!"
   whitelist:
     - "714736434782666752"
@@ -77,9 +77,9 @@ blacklisted_roles:
 # Note: If you leave any blank like this -> "" then it will not be added to the embed.
 welcome_settings:
   welcome_message: true
-  welcome_channel_id: "855868417721499691"
+  welcome_channel_id: "879762306177847356"
   embed_title: "Welcome to Glowstone Development"
-  embed_description: "**%USERNAME%** has joined the server\n\nWelcome to Glowstone Development\n\n**➠ Store:** %STORE%\n**➠ Total members:** %TOTAL_MEMBERS%\n**➠ Products:** %#872886189164732446%"
+  embed_description: "**%USERNAME%** has joined the server\n\nWelcome to Glowstone Development\n\n**➠ Store:** %STORE%\n**➠ Total members:** %TOTAL_MEMBERS%\n**➠ Support:** %#872886189164732446%"
   embed_thumbnail: "%USER_AVATAR%" # You can only use an image link or %USER_AVATAR% and %SERVER_ICON%.
   embed_image: "" # You can only use an image link or %USER_AVATAR% and %SERVER_ICON%. 
 
@@ -91,10 +91,16 @@ welcome_settings:
 ############################################################
 
 
+# List of placeholders
+# %USERNAME% - Username with discriminator
+# %USERTAG% - The @ user tag
+
 ticket_settings:
-  ticket_access: "856033546450763796" # Users with this role will be added to new tickets. All staff members should have this role to be added to tickets
+  ticket_access: "879762308874788894" # Users with this role will be added to new tickets. All staff members should have this role to be added to tickets
   ticket_panel_title: "🎟️ Tickets"
-  ticket_panel_message: "__**How to make a ticket**__\n> Click on the button below to create a ticket\n> Once the ticket is made you will be able to type in there"
+  ticket_panel_message1: "> Hey! Feel free to create a ticket if you need help with regarding our services, or want to contact the support team."
+  ticket_panel_message2: "Hello there %USERTAG%, \n The staff will be here as soon as possible. Meanwhile please state the following clearly.\n\n> Your IGN: \n> Your Issue:\n\nThank You!"
+  ticket_button_label: "💁‍♀️ Support"
 
 
 ############################################################
@@ -105,7 +111,7 @@ ticket_settings:
 
 
 application_settings:
-  applications_channel: "862175877794103306" # Submitted applications gets sent here
+  applications_channel: "879762316936220742" # Submitted applications gets sent here
   questions: 
     - "What is your age?"
     - "What is your timezone?"
@@ -128,18 +134,21 @@ application_settings:
 automod_settings:
   ignore_bots: true # Ignores bots (ignores the serverbot by default)
   min_age: '31d' # Minimum age of an account required to join the server
+  anti_raid: true
   links:
     enabled: true
-    allow_youtube: true # Doesn't trigger automod if the link is from YT
+    ignored_domains: ["www.youtube.com", "youtu.be", "gyazo.com", "tenor.com"] # these domains will be whitelisted
     ignored_links: ["https://glowstonedev.tebex.io/", "https://discord.gg/pYXsJxkBU3", "discord.gg/pYXsJxkBU3"]
     ignored_channels: ["856545475372384258", "channel-id-2"] # Will not automoderate in these channels
     ignored_users: ["user-id-1", "user-id-2"] # Will not automoderate these users
+    ignored_roles: ["879762308874788894"]
     punishment: ["Mute", "1h"] # Format [Punishment type, duration], Available options "Mute", "Kick" or "Ban" (case sensitive). In duration, if you type "null", then it will be permanent
   profanity:
     enabled: true
     list: ["nigger", "chink", "nigga"] # List of blacklisted words.
     ignored_channels: ["channel-id-1", "channel-id-2"]
     ignored_users: ["user-id-1", "user-id-2"]
+    ignored_roles: ["879762308874788894"]
     punishment: ["Mute", "1h"] 
   anti_spam:
     enabled: true # Will trigger for wall of text, mass mentions and 
@@ -148,10 +157,12 @@ automod_settings:
     max_interval: "5s" # Amount of time in which messages are considered spam.
     ignored_channels: ["channel-id-1", "channel-id-2"]
     ignored_users: ["user-id-1", "user-id-2"]
+    ignored_roles: ["879762308874788894"]
     punishment: ["1h"] # Only mute option is available here
   ip: # Check if some1 sent ips in chat
     enabled: true
     ignored_channels: ["channel-id-1", "channel-id-2"]
     ignored_users: ["user-id-1", "user-id-2"]
+    ignored_roles: ["879762308874788894"]
     punishment: ["Mute", "12h"]
     

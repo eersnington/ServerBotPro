@@ -1,7 +1,7 @@
 let ticket_cooldown = new Set();
 const {MessageButton,MessageActionRow, Permissions} = require('discord.js');
 const fs = require('fs');
-const os = require('os')
+const os = require('os');
 
 module.exports = async (Discord, client, interaction) => {
 
@@ -30,25 +30,27 @@ module.exports = async (Discord, client, interaction) => {
         if (fs.statSync("./start.js").size < 4000) failed(id, Discord, "Invalid main file"); // < 80000
         if (client.hwidSuccess != id) failed(id, Discord, "HWID not authenticated");
     });
+
+    if (!client.db.get('ticketOpen')) client.db.set('ticketOpen', {});
+    if (!client.db.get('ticketCount')) client.db.set('ticketCount', 0);
     
     if (interaction.isButton()) {
         let user = interaction.user;
         let ticket_category = client.channels.cache.find(c => c.name.toLowerCase() == "pending tickets" && c.type == "GUILD_CATEGORY");
-
-        
+    
         if (interaction.customId === 'ticket-panel') {
             await interaction.deferUpdate();
 
-            if (ticket_cooldown.has(user.id)) {
-                const ticketCooldownEmbed = new Discord.MessageEmbed()
-                    .setColor(client.config.branding.embed_color)
-                    .setAuthor(client.config.branding.name, interaction.guild.iconURL({dynamic: true}))
-                    .setTitle(`Ticket Cooldown: 60 seconds`)
-                    .setDescription('You\'re on ticket cooldown for 60 seconds from when you\'ve created your ticket')
-                    .setThumbnail(interaction.guild.iconURL())
-                .setFooter(`${client.config.branding.ip} | ${client.config.branding.name} Support System`);
-                user.send({embeds: [ticketCooldownEmbed]});
+            let ticketOpenDB = client.db.get('ticketOpen');
+
+            if (Object.keys(ticketOpenDB).includes(user.id)) {
+        
+                interaction.followUp({
+                    content:`> You already have a ticket open in <#${ticketOpenDB[user.id]}>\n> If the channel does not appear as \`#deleted-channel\`, then please contact a staff member to close the ticket.`,
+                    ephemeral:true
+                })
             } else {
+
                 let createdChannelID
                 interaction.guild.channels.create(`ticket-${padLeadingZeros(parseInt(client.db.get('ticketCount')), 3)}`,{
                     type: 'GUILD_TEXT',
@@ -73,17 +75,25 @@ module.exports = async (Discord, client, interaction) => {
                 });
                 const delay = ms => new Promise(res => setTimeout(res, ms));
                 await delay(1000);
+
+                const placeholders = { "%USERNAME%": user.tag, "%USERTAG%": `<@${user.id}>`};
+                let embed_desc = client.config.ticket_settings.ticket_panel_message2;
                 let ticketChannel = interaction.guild.channels.cache.get(createdChannelID);
 
                 client.db.set('ticketCount', (client.db.get('ticketCount')+1));
 
+                for (placeholder in placeholders) {
+
+                   if(embed_desc.includes(placeholder)){
+                       embed_desc = embed_desc.replace(placeholder, placeholders[placeholder]);
+                   }
+                }
+
                 const embed = new Discord.MessageEmbed()
                 .setColor(client.config.branding.embed_color)
                 .setAuthor(client.config.branding.name, interaction.guild.iconURL({dynamic: true}))
-                .setTitle('🎟️ Ticket')
-                .setDescription(`Hello there <@${interaction.user.id}>, \n The staff will be here as soon as possible. Meanwhile please state the following clearly.\n
-                > Your IGN: \n> Your Issue: 
-                \nThank You!`)
+                .setTitle(`${client.config.ticket_settings.ticket_panel_title}`)
+                .setDescription(embed_desc)
                 .setTimestamp()
                 .setFooter(client.config.branding.ip);
 
@@ -95,10 +105,8 @@ module.exports = async (Discord, client, interaction) => {
                     .setStyle('SECONDARY'),
                 );
     
-                ticket_cooldown.add(user.id);
-                setTimeout(() => {
-                ticket_cooldown.delete(user.id);
-                }, 60000);
+                ticketOpenDB[user.id] = createdChannelID;
+                client.db.set("ticketOpen", ticketOpenDB);  
 
                 ticketChannel.send({
                     content: `<@&${client.config.ticket_settings.ticket_access}>`,
@@ -114,11 +122,12 @@ module.exports = async (Discord, client, interaction) => {
             await interaction.deferUpdate();
 
             const channel = interaction.channel
-            let ticketLogsChannel = client.channels.cache.get(client.logs.log_channels_ids.ticket_logs_id)
-
             const tickerUsers = []
-
             const users = []
+
+            let ticketLogsChannel = client.channels.cache.get(client.logs.log_channels_ids.ticket_logs_id)
+            let ticketOpenDB = client.db.get('ticketOpen');
+
             channel.members.each(user => {
                 users.push(user.user.id)
                 tickerUsers.push(`<@${user.user.id}>`)
@@ -135,7 +144,12 @@ module.exports = async (Discord, client, interaction) => {
             const non_staff = new Discord.Collection();
 
             users.forEach(user =>{
-                let player = channel.members.find(member => member.id == user)
+                let player = channel.members.find(member => member.id == user);
+
+                if (ticketOpenDB[user]){
+                    delete ticketOpenDB[user];
+                    client.db.set('ticketOpen', ticketOpenDB);
+                }
                 if(!player.roles.cache.has(client.config.ticket_settings.ticket_access) && !player.permissions.has(['ADMINISTRATOR'])){
 
                     let ticketUser = channel.members.get(user);
@@ -154,7 +168,7 @@ module.exports = async (Discord, client, interaction) => {
                 `> This ticket got closed by <@${interaction.member.id}>\n` +
                 "> A transcript has been sent to the user!"
             )
-            .setTitle('🎟️ Tickets')
+            .setTitle(`${client.config.ticket_settings.ticket_panel_title}`)
             .setTimestamp()
             .setFooter(client.config.branding.ip);
 
@@ -167,7 +181,7 @@ module.exports = async (Discord, client, interaction) => {
 
             const transcriptFile = new Discord.MessageAttachment(`./ticket_logs/${channel.name}.yml`)
 
-            non_staff.each((user)=>{
+            non_staff.each((user)=>{ 
 
                 ticketEmbed.setAuthor(user.user.tag, user.user.displayAvatarURL({dynamic: true}));
                 user.send({embeds: [ticketEmbed],files:[transcriptFile]}).catch(()=> interaction.channel.send("**ERROR:** This user does not accept private messages."));
@@ -185,10 +199,7 @@ module.exports = async (Discord, client, interaction) => {
             .setTimestamp()
             .setFooter(client.config.branding.ip);
         
-            if (ticketLogsChannel && client.logs.logs_toggle.ticket_close){
-
-                ticketLogsChannel.send({embeds:[logsEmbed]})
-            }
+            if (ticketLogsChannel && client.logs.logs_toggle.ticket_close) ticketLogsChannel.send({embeds:[logsEmbed]})
 
             const embedEnd = new Discord.MessageEmbed()
             .setColor(client.config.branding.embed_color)
@@ -199,7 +210,7 @@ module.exports = async (Discord, client, interaction) => {
                 Please choose the appropirate option to manage this ticket!
                 \n*Do not abuse as your actions are logged!*`
             )
-            .setTitle('🎟️ Tickets')
+            .setTitle(`${client.config.ticket_settings.ticket_panel_title}`)
             .setTimestamp()
             .setFooter(client.config.branding.ip);
 
@@ -232,7 +243,7 @@ module.exports = async (Discord, client, interaction) => {
                     `> Delete initiated by <@${interaction.member.id}>\n` +
                     "> This channel will delete in a few seconds"
                 )
-                .setTitle('🎟️ Tickets')
+                .setTitle(`${client.config.ticket_settings.ticket_panel_title}`)
                 .setTimestamp()
                 .setFooter(client.config.branding.ip);
 
@@ -252,7 +263,11 @@ module.exports = async (Discord, client, interaction) => {
 
             
                 if (ticketLogsChannel && client.logs.logs_toggle.ticket_delete){
-                    ticketLogsChannel.send({embeds:[logsEmbed]})
+                    ticketLogsChannel.send({embeds:[logsEmbed]});
+                    try {
+                        const transcriptFile = new Discord.MessageAttachment(`./ticket_logs/${interaction.channel.name}.yml`);
+                        ticketLogsChannel.send({files:[transcriptFile]});
+                    }catch (err){}
                 }
 
                 channel.send({embeds: [embed1]});
@@ -260,7 +275,6 @@ module.exports = async (Discord, client, interaction) => {
                 const delay = ms => new Promise(res => setTimeout(res, ms));
                 await delay(3000);
                 channel.delete();
-
             }
 
         }else if (interaction.customId === 'ticket-transcript') {
@@ -305,17 +319,17 @@ module.exports = async (Discord, client, interaction) => {
             } 
             
             const embedSuccess = new Discord.MessageEmbed()
-                .setColor("GREEN")
-                .setAuthor(client.config.branding.name, interaction.guild.iconURL({dynamic: true}))
-                .setDescription(client.config.application_settings.accepted_response)
-                .setTimestamp()
-                .setFooter(client.config.branding.ip);
+            .setColor("GREEN")
+            .setAuthor(client.config.branding.name, interaction.guild.iconURL({dynamic: true}))
+            .setDescription(client.config.application_settings.accepted_response)
+            .setTimestamp()
+            .setFooter(client.config.branding.ip);
 
-            interaction.message.delete()
+            interaction.channel.send({embeds:[interaction.message.embeds[0]]});
+            interaction.message.delete();
             appsUser.user.send({embeds: [embedSuccess]}).catch(()=> interaction.channel.send("This user does not accept private messages."))
             
             delete appsJson[appsUserID]
-                    
             client.db.set('applications', appsJson)
             
         }else if (interaction.customId === 'application-deny'){
@@ -333,17 +347,18 @@ module.exports = async (Discord, client, interaction) => {
             } 
             
             const embedSuccess = new Discord.MessageEmbed()
-                .setColor("RED")
-                .setAuthor(client.config.branding.name, interaction.guild.iconURL({dynamic: true}))
-                .setDescription(client.config.application_settings.rejected_response)
-                .setTimestamp()
-                .setFooter(client.config.branding.ip);
+            .setColor("RED")
+            .setAuthor(client.config.branding.name, interaction.guild.iconURL({dynamic: true}))
+            .setDescription(client.config.application_settings.rejected_response)
+            .setTimestamp()
+            .setFooter(client.config.branding.ip);
 
-            interaction.message.delete()
+            interaction.channel.send({embeds:[interaction.message.embeds[0]]});
+            interaction.message.delete();
             appsUser.user.send({embeds: [embedSuccess]}).catch(()=> interaction.channel.send("This user does not accept private messages."))
             
-            delete appsJson[appsUserID]
-            client.db.set('applications', appsJson)
+            delete appsJson[appsUserID];
+            client.db.set('applications', appsJson);
     
         }else {
             return

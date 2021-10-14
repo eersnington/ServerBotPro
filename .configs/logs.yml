@@ -19,9 +19,9 @@
 
 # Channel IDS of different types of logs. (Note: If you don't want to separate the logs to different channels, then all the log channel ids should be the same)
 log_channels_ids:
-  logs_id: "879795048638742628" # Includes Message content edit, Role add/removed
-  mod_logs_id: "879795334048534558" # Includes Kicks, Mutes, Bans
-  ticket_logs_id: "879795157002756116" # Includes ticket close and ticket delete
+  logs_id: "879762309084487701" # Includes Message content edit, Role add/removed
+  mod_logs_id: "879762310577668116" # Includes Kicks, Mutes, Bans
+  ticket_logs_id: "879762312968413207" # Includes ticket close and ticket delete
   staff_movement_id: "879795542719332383" # Includes Promotion, Demotion
   boost_id: "885000104019390465" 
 

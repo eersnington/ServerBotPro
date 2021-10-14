@@ -16,8 +16,8 @@ module.exports.run = async (client, message, member, action, reason, duration) =
     if (action == "ban"){
 
         logsEmbed.setDescription(
-            `__**Player banned**__\n
-            **Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **<@${(member.user) ? member.user.id : member.id}>\n**Reason: ** \`${reason}\`\n**Duration: ** \`Permanent\``
+            "__**Player banned**__\n\n"+
+            `**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **\`${(member.user) ? member.user.tag : member.tag}\`\n**Reason: ** \`${reason.substring(0,50)}\`\n**Duration: ** \`Permanent\``
         );
 
         if (channel)return channel.send({embeds:[logsEmbed]})
@@ -27,8 +27,8 @@ module.exports.run = async (client, message, member, action, reason, duration) =
     if (action == "tempban"){
 
         logsEmbed.setDescription(
-            `__**Player banned**__\n
-            **Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **<@${(member.user) ? member.user.id : member.id}>\n**Reason: ** \`${reason}\`\n**Duration: ** \`${ms(ms(duration))}\``
+            "__**Player banned**__\n\n"+
+            `**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **\`${(member.user) ? member.user.tag : member.tag}\`\n**Reason: ** \`${reason.substring(0,50)}\`\n**Duration: ** \`${ms(ms(duration))}\``
         );
 
         if (channel)return channel.send({embeds:[logsEmbed]})
@@ -39,8 +39,8 @@ module.exports.run = async (client, message, member, action, reason, duration) =
     if (action == "unban"){
 
         logsEmbed.setDescription(
-            `__**Player unbanned**__\n
-            **Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **<@${(member.user) ? member.user.id: member.id}>\n**Reason: ** \`${reason}\`\n**Date: ** \`${duration}\``
+            "__**Player unbanned**__\n\n"+
+            `**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **\`${(member.user) ? member.user.tag : member.tag}\`\n**Reason: ** \`${reason.substring(0,50)}\`\n**Date: ** \`${duration}\``
         );
 
         if (channel)return channel.send({embeds:[logsEmbed]})
@@ -50,8 +50,8 @@ module.exports.run = async (client, message, member, action, reason, duration) =
     if (action == "mute"){
 
         logsEmbed.setDescription(
-            `__**Player muted**__\n
-            **Channel: **\`${message.channel.name}\`\n**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **<@${(member.user) ? member.user.id: member.id}>\n**Reason: ** \`${reason}\`\n**Duration: ** \`${ms(ms(duration))}\``
+            "__**Player muted**__\n\n"+
+            `**Channel: **\`${message.channel.name}\`\n**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **\`${(member.user) ? member.user.tag : member.tag}\`\n**Reason: ** \`${reason.substring(0,50)}\`\n**Duration: ** \`${ms(ms(duration))}\``
         );
 
         if (channel)return channel.send({embeds:[logsEmbed]})
@@ -62,8 +62,8 @@ module.exports.run = async (client, message, member, action, reason, duration) =
     if (action == "unmute"){
 
         logsEmbed.setDescription(
-            `__**Player unmuted**__\n
-            **Channel: **\`${message.channel.name}\`\n**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **<@${(member.user) ? member.user.id: member.id}>\n**Reason: ** \`${reason}\`\n**Date: ** \`${duration}\``
+            "__**Player unmuted**__\n\n"+
+            `**Channel: **\`${message.channel.name}\`\n**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **\`${(member.user) ? member.user.tag : member.tag}\`\n**Reason: ** \`${reason.substring(0,50)}\`\n**Date: ** \`${duration}\``
         );
 
         if (channel)return channel.send({embeds:[logsEmbed]})
@@ -74,8 +74,8 @@ module.exports.run = async (client, message, member, action, reason, duration) =
     if (action == "kick"){
 
         logsEmbed.setDescription(
-            `__**Player kicked**__\n
-            **Channel: **\`${message.channel.name}\`\n**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **<@${(member.user) ? member.user.id: member.id}>\n**Reason: ** \`${reason}\``
+            "__**Player kicked**__\n\n"+
+            `**Channel: **\`${message.channel.name}\`\n**Moderator: **<@${(message.member) ? message.member.id : client.user.id}>\n**User: **\`${(member.user) ? member.user.tag : member.tag}\`\n**Reason: ** \`${reason.substring(0,50)}\``
         );
 
         if (channel)return channel.send({embeds:[logsEmbed]})
@@ -86,8 +86,8 @@ module.exports.run = async (client, message, member, action, reason, duration) =
     if (action == "purge"){
 
         logsEmbed.setDescription(
-            `__**Purged **__\n
-            **Moderator: **<@${message.member.id}>\n**Purged amount: ** \`${reason}\``
+            "__**Purged **__\n\n"+
+            `**Moderator: **<@${message.member.id}>\n**Purged amount: ** \`${reason.substring(0,50)}\``
         );
 
         if (channel)return channel.send({embeds:[logsEmbed]})

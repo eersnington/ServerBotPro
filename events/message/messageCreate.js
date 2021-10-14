@@ -46,14 +46,13 @@ module.exports = (Discord, client, message) => {
     let role_count = 0
 
     if (!client.config.bot.whitelist.includes(message.member.id)){
-        if (command.requiredRoles.length !=0){
-            command.requiredRoles.forEach(role => {
-                if (message.member.roles.cache.has(role)) role_count++;
-            })
-            
-            if (role_count <1) return message.reply(`You do not have the required roles!`);
-        }
-    
+
+        let hasRoles = false;
+        command.requiredRoles.forEach((roleid)=>{
+            if (message.member.roles.cache.has(roleid)) hasRoles = true;
+        })
+
+        if (!hasRoles) return message.reply(`You do not have the required roles!`);
         if (!message.member.permissions.has(command.requiredPerms)) return message.reply(`You do not have the required permissions!`);
     }
     
