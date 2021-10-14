@@ -15,6 +15,7 @@ module.exports = {
     description: 'Mute a user',
     usage: 'mute <@user> <time> <reason>',
     aliases: [],
+    args: 3,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

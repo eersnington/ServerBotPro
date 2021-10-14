@@ -5,6 +5,7 @@ module.exports = {
     description : 'Uh ohh, someone\'s triggered',
     usage: 'trigger [@user]',
     aliases: ['triggered'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

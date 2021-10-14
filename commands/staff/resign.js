@@ -1,8 +1,9 @@
 module.exports = {
     name: 'resign',
     description: 'Resign a user from the staff team',
-    usage: 'resign @user',
+    usage: 'resign <@user>',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

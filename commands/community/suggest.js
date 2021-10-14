@@ -4,6 +4,7 @@ module.exports = {
     description: 'Create a suggestion',
     usage: 'suggest <text>',
     aliases: ['suggestion'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

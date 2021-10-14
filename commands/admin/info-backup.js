@@ -5,6 +5,7 @@ module.exports = {
     description: 'Get info of a  discord backup',
     usage: 'info-backup <backup-id>',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

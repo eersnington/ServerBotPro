@@ -1,8 +1,9 @@
 module.exports = {
     name: 'hire',
     description: 'Hire a user to a specified role',
-    usage: 'hire @user @role',
+    usage: 'hire <@user> <@role>',
     aliases: [],
+    args: 2,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

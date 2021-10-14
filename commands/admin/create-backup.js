@@ -5,6 +5,7 @@ module.exports = {
     description: 'Create a discord backup',
     usage: 'create-backup',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

@@ -1,20 +1,11 @@
 const ms = require('ms')
 
-/**
- * Mutes structure
- * {    user:{
- *          date:
- *          duration:
- *      }
- * }
- * 
- */
-
 module.exports = {
     name: 'unban',
     description: 'Unban a user',
     usage: 'unban <@user> <reason>',
     aliases: [],
+    args: 2,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

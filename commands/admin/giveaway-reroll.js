@@ -3,6 +3,7 @@ module.exports = {
     description: 'Reroll a giveaway',
     usage: 'giveaway-refoll <message_id>',
     aliases: ['g-reroll', 'greroll'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

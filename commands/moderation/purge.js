@@ -5,6 +5,7 @@ module.exports = {
     description: 'Bulk delete messages',
     usage: 'purge <no. of messages>',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

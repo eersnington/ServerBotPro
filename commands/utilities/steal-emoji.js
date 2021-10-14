@@ -4,7 +4,8 @@ module.exports = {
     name: 'steal-emoji',
     description: 'Steal and add emojis from other servers',
     usage: 'steal-emoji <emoji>',
-    aliases: ['getemoji'],
+    aliases: ['getemoji', 'addemoji'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

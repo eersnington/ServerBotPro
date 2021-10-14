@@ -4,6 +4,7 @@ module.exports = {
     description: 'Duel a user to a game of Connect4',
     usage: 'connect4 <@user>',
     aliases: ['c4'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

@@ -3,6 +3,7 @@ module.exports = {
     description: 'Ban a user termporarily',
     usage: 'tempban <@user> <time> <reason>',
     aliases: [],
+    args: 3,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

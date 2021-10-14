@@ -7,6 +7,7 @@ module.exports = {
     description: 'Start an application',
     usage: 'apply',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

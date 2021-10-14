@@ -5,6 +5,7 @@ module.exports = {
     description: 'First to click wins!',
     usage: 'quickclick',
     aliases: ['click'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

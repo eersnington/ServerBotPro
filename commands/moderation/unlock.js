@@ -3,6 +3,7 @@ module.exports = {
     description: 'Re-enable perms to send messages in a channel',
     usage: 'unlock [@role]',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

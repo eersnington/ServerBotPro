@@ -5,6 +5,7 @@ module.exports = {
     description: 'Start a giveaway',
     usage: 'giveaway-start <duration> <winner_count> <prize>',
     aliases: ['g-start', 'gstart'],
+    args: 3,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

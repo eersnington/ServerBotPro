@@ -5,6 +5,7 @@ module.exports = {
     description: '1v1 duel someone',
     usage: 'fight <@user>',
     aliases: ['pvp'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

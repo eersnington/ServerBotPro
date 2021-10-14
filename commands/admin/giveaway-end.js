@@ -5,6 +5,7 @@ module.exports = {
     description: 'End a giveaway',
     usage: 'giveaway-end <message_id>',
     aliases: ['g-end', 'gend'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

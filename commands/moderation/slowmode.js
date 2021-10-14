@@ -5,6 +5,7 @@ module.exports = {
     description: 'Set the rate limit of a channel',
     usage: 'slowmode <duration/off>',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

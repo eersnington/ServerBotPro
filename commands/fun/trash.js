@@ -2,9 +2,10 @@ const {Canvas} = require("canvacord");
 
 module.exports = {
     name : 'trash',
-    description : 'Trash?',
+    description : 'Bro you\'re trash',
     usage: 'trash [@user]',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

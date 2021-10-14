@@ -3,6 +3,7 @@ module.exports = {
     description: 'Assign a user to a specified role',
     usage: 'assign <@user> <@role>',
     aliases: [],
+    args: 2,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

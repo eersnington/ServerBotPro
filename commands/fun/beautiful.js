@@ -5,6 +5,7 @@ module.exports = {
     description: 'Oh this? This is beautiful!',
     usage: 'beautiful [@user]',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

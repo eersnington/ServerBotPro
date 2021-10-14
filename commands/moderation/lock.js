@@ -3,6 +3,7 @@ module.exports = {
     description: 'Restrict sending messages to a channel',
     usage: 'lock [@role]',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args) {

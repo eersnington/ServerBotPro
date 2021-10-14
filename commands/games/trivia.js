@@ -5,6 +5,7 @@ module.exports = {
     description: 'Play a game of trivia',
     usage: 'trivia',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

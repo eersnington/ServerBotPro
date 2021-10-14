@@ -3,6 +3,7 @@ module.exports = {
     description: 'Permanent ban a user (also clears their messages)',
     usage: 'ban <@user> <reason>',
     aliases: [],
+    args: 2,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

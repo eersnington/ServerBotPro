@@ -5,6 +5,7 @@ module.exports = {
     description: 'Eat as much apples as you can',
     usage: 'snake',
     aliases: ['sss'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

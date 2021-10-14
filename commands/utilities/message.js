@@ -3,7 +3,8 @@ module.exports = {
     name: 'message',
     description: 'Send a message through the bot',
     usage: 'message <text>',
-    aliases: ['msg', 'sudo'],
+    aliases: ['sudo', 'announce'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

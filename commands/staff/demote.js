@@ -3,6 +3,7 @@ module.exports = {
     description: 'Demote a user to a specified role',
     usage: 'demote <@user> <@role>',
     aliases: [],
+    args: 2,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

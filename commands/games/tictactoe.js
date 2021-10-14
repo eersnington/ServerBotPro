@@ -4,6 +4,7 @@ module.exports = {
     description: 'Challenge a user to a game of tictactoe',
     usage: 'tictactoe <@user>',
     aliases: ['ttt'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

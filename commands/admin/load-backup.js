@@ -6,6 +6,7 @@ module.exports = {
     description: 'Load a discord backup',
     usage: 'load-backup <backup-id>',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

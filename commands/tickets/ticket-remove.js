@@ -5,6 +5,7 @@ module.exports = {
     description: 'Remove a user from the ticket',
     usage: 'ticket-remove <@user>',
     aliases: ['t-remove', 'tremove'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

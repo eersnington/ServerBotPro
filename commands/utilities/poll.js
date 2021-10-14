@@ -5,6 +5,7 @@ module.exports = {
     description: 'Create a poll',
     usage: 'poll <text>',
     aliases: ['ballot', 'vote'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

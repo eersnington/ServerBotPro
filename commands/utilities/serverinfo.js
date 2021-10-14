@@ -3,6 +3,7 @@ module.exports = {
     description: 'Tells you the server info',
     usage: 'serverinfo',
     aliases: ['serverinfo-command', 'sinfo'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

@@ -5,6 +5,7 @@ module.exports = {
     description: 'Create a panel for ticket creation',
     usage: 'ticket-panel',
     aliases: ['t-panel', 'tpanel'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

@@ -5,6 +5,7 @@ module.exports = {
     description: 'Rename a ticket channel',
     usage: 'ticket-rename <new_name>',
     aliases: ['t-rename', 'trename'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

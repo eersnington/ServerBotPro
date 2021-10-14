@@ -5,7 +5,8 @@ module.exports = {
     name: 'help',
     description: 'help command',
     usage: 'help [cmd]',
-    aliases: [],
+    aliases: ['commands'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

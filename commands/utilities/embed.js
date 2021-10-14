@@ -4,6 +4,7 @@ module.exports = {
     description: 'Send a message as an embed',
     usage: 'embed [title] :: [text]',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

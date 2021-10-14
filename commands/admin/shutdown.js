@@ -3,6 +3,7 @@ module.exports = {
     description: 'Closes the application',
     usage: 'shutdown',
     aliases: ['turnoff', 'pce'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

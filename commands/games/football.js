@@ -4,6 +4,7 @@ module.exports = {
     description: 'Score a goal to win!',
     usage: 'football',
     aliases: ['soccer'],
+	args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

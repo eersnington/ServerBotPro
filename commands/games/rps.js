@@ -5,6 +5,7 @@ module.exports = {
     description: 'Challenge a user to a game of rock paper scissors!',
     usage: 'rps <@user>',
     aliases: ['rockpaperscissors'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

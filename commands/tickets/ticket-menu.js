@@ -5,6 +5,7 @@ module.exports = {
     description: 'Ticket menu for staff to manage tickets',
     usage: 'ticket-menu',
     aliases: ['t-menu', 'tmenu'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

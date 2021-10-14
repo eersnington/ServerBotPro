@@ -5,6 +5,7 @@ module.exports = {
     description: 'Add a user to the ticket',
     usage: 'ticket-add <@user>',
     aliases: ['t-add', 'tadd'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

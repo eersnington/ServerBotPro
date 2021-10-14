@@ -10,6 +10,7 @@ module.exports = {
     description: 'Gives you the info about the bot',
     usage: 'botinfo',
     aliases: ['botinfo-command', 'binfo'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

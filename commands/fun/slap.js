@@ -5,6 +5,7 @@ module.exports = {
     description : 'Send someone to the shadow realm',
     usage: 'slap [@user]',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

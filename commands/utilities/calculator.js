@@ -5,6 +5,7 @@ module.exports = {
     description: 'Opens up a calculator',
     usage: 'calculator',
     aliases: ['calc'],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

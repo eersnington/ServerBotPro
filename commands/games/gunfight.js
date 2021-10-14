@@ -3,7 +3,8 @@ module.exports = {
     name: 'gunfight',
     description: 'Duel a user to a gunfight',
     usage: 'gunfight <@user>',
-    aliases: ['gf'],
+    aliases: ['gf', 'shoot'],
+	args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

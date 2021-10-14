@@ -5,6 +5,7 @@ module.exports = {
     description : 'This man has a bounty on him',
     usage: 'wanted [@user]',
     aliases: [],
+    args: 0,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

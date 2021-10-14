@@ -3,6 +3,7 @@ module.exports = {
     description: 'Kicks a user',
     usage: 'kick <@user> <reason>',
     aliases: [],
+    args: 2,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

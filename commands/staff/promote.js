@@ -1,8 +1,9 @@
 module.exports = {
     name: 'promote',
     description: 'Promote a user to a specified role',
-    usage: 'promote @user @role',
+    usage: 'promote <@user> <@role>',
     aliases: [],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){

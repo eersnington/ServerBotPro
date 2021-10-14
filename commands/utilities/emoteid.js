@@ -3,6 +3,7 @@ module.exports = {
     description: 'Find out the ID of a custom emote',
     usage: 'emoteid <emoji>',
     aliases: ['emid', 'emojiid', 'emojid'],
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){
