@@ -11,11 +11,12 @@ module.exports = {
     async execute(client, Discord, message, args){
         const member1 =  message.mentions.members.first() || message.guild.members.cache.get(args[0]) || message.guild.members.cache.find(x => x.user.tag.toLowerCase() === args[0] || x.user.tag === args[0]) || message.member;
         
-        const hoistedRole = member1.roles.cache.find((role) => role.hoist);
         const roles = member1.roles.cache
         .sort((a, b) => b.position - a.position)
         .map(role => role.toString())
         .slice(0, -1);
+
+        const hoistedRole = member1.roles.cache.sort((a, b) => b.position - a.position).find((role) => role.hoist);
 
         const bot = member1.user.bot ? "🤖 Bot" : "👤 Member";
         
