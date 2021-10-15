@@ -11,9 +11,9 @@ const client = new Discord.Client({intents: intents, partials: ['MESSAGE', 'CHAN
 
 client.commands = new Discord.Collection();
 client.events = new Discord.Collection();
-client.config = YAML.load(fs.readFileSync(".configs/config.yml"));
-client.logs = YAML.load(fs.readFileSync(".configs/logs.yml"));
-client.cmdyml = YAML.load(fs.readFileSync(".configs/commands.yml"));
+client.config = YAML.load(fs.readFileSync("_configs/config.yml"));
+client.logs = YAML.load(fs.readFileSync("_configs/logs.yml"));
+client.cmdyml = YAML.load(fs.readFileSync("_configs/commands.yml"));
 client.db = require('quick.db');
 client.toggle = false;
 

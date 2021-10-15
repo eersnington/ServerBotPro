@@ -1,5 +1,6 @@
 module.exports = async (Discord, client, message) => {
     
+    if (!message.author) return
     if (message.author.id == client.user.id) return
     let channel = client.channels.cache.get(client.logs.log_channels_ids.logs_id)
     if (!channel) return;

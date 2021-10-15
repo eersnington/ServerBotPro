@@ -1,4 +1,5 @@
 module.exports = async (Discord, client, message, oldContent, newContent) => {
+    
     let channel = client.channels.cache.get(client.logs.log_channels_ids.logs_id)
     if (!channel) return;
     if (!client.logs.logs_toggle.message_edit) return;
