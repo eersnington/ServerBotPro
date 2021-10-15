@@ -20,6 +20,7 @@ module.exports = (client, Discord) =>{
         if (client.config.automod_settings.ignore_bots && message.author.bot) return
         if (!client.db.get('muted')) client.db.set('muted', {})
         if (message.channel.name.includes('ticket-')) return
+        if (message.content.startsWith(client.config.bot.prefix)) return
 
         if (!client.toggle){
 
@@ -48,6 +49,15 @@ module.exports = (client, Discord) =>{
         .setAuthor(`Automod`, message.guild.iconURL({ dynamic: true }))
         .setColor(client.config.branding.embed_color)
         .setTimestamp();
+
+        if (!client.db.get("stats")) client.db.set("stats", {});
+
+        let userStats = client.db.get("stats");
+        if (!userStats[message.author.id]) userStats[message.author.id] = {tag: message.author.tag, messageCount: 0, voiceChatCount: 0};
+        
+        userStats[message.author.id].messageCount = userStats[message.author.id].messageCount +1;
+
+        client.db.set("stats", userStats);
 
 
         if (client.config.bot.whitelist.includes(member.id)) return

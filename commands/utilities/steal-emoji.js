@@ -4,7 +4,7 @@ module.exports = {
     name: 'steal-emoji',
     description: 'Steal and add emojis from other servers',
     usage: 'steal-emoji <emoji>',
-    aliases: ['getemoji', 'addemoji'],
+    aliases: ['getemoji', 'addemoji', 'stealemoji'],
     args: 1,
     requiredRoles: [],
     requiredPerms: [],

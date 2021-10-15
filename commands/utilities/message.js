@@ -3,7 +3,7 @@ module.exports = {
     name: 'message',
     description: 'Send a message through the bot',
     usage: 'message <text>',
-    aliases: ['sudo', 'announce'],
+    aliases: ['say', 'announce'],
     args: 1,
     requiredRoles: [],
     requiredPerms: [],
@@ -12,7 +12,7 @@ module.exports = {
         let messageArgs = args.join(' ');
 
         message.channel.send({content: messageArgs}).then(()=>{
-            message.delete()
+            message.delete();
         })
 
     }

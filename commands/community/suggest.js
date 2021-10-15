@@ -14,13 +14,13 @@ module.exports = {
         let messageArgs = args.join(' ');
 
         const embed = new Discord.MessageEmbed()
-            .setColor(client.config.branding.embed_color)
-            .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
-            .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
-            .setDescription(`\`${messageArgs}\``)
-            .setTitle('Incoming suggestion')
-            .setTimestamp()
-            .setFooter(client.config.branding.ip);
+        .setColor(client.config.branding.embed_color)
+        .setAuthor(message.author.tag, message.author.displayAvatarURL({ dynamic: true }))
+        .setThumbnail(message.author.displayAvatarURL({ dynamic: true }))
+        .setDescription(`\`${messageArgs}\``)
+        .setTitle('Incoming suggestion')
+        .setTimestamp()
+        .setFooter(client.config.branding.ip);
         
         
         channel.send({embeds:[embed]}).then((msg) =>{

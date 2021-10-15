@@ -48,9 +48,9 @@ module.exports = (Discord, client, message) => {
         let hasRoles = false;
         command.requiredRoles.forEach((roleid)=>{
             if (message.member.roles.cache.has(roleid)) hasRoles = true;
-        })
+        });
 
-        if (!hasRoles) return message.reply(`You do not have the required roles!`);
+        if (!hasRoles && command.requiredRoles.length > 0) return message.reply(`You do not have the required roles!`);
         if (!message.member.permissions.has(command.requiredPerms)) return message.reply(`You do not have the required permissions!`);
     }
 

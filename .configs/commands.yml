@@ -57,28 +57,36 @@
 ##################
 
 admin:
-  create-backup: 
+  create-backup:
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
-  giveaway-end: 
+  giveaway-end:
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD"]
-  giveaway-reroll: 
+  giveaway-reroll:
+    load: true 
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD"]
-  giveaway-start: 
+  giveaway-start:
+    load: true 
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD"]
-  info-backup: 
+  info-backup:
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
-  load-backup: 
+  load-backup:
+    load: true 
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   reactionrole: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   shutdown: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
 
@@ -93,12 +101,15 @@ admin:
 # Suggestion: Leave these blank and let every member use these commands
 community:
   apply: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   leaderboard: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   suggest: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
 
@@ -113,24 +124,31 @@ community:
 # Suggestion: Leave these blank and let every member use these commands
 fun:
   beautiful: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
-  facepalm: 
+  facepalm:
+    load: true 
     RolesRequired: []
     DiscordPermissions: []
   slap: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   spank: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
-  trash: 
+  trash:
+    load: true 
     RolesRequired: []
     DiscordPermissions: []
   trigger: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   wanted: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
 
@@ -143,30 +161,39 @@ fun:
 # Suggestion: Leave these blank and let every member use these commands
 games:
   connect4: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   fight: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   football: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   gunfight: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   quickclick: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   rps: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   snake: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   tictactoe: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   trivia: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
 
@@ -177,36 +204,47 @@ games:
 #######################
 moderation:
   anti-join: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD"]
   ban: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["BAN_MEMBERS"]
   kick: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["KICK_MEMBERS"]
   lock: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD", "MANAGE_CHANNELS"]
   mute: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["KICK_MEMBERS"]
   purge: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]
   slowmode: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_CHANNELS", "MANAGE_MESSAGES"]
   tempban: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["BAN_MEMBERS"]
   unban: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD","BAN_MEMBERS"]
   unlock: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD", "MANAGE_CHANNELS"]
   unmute: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["KICK_MEMBERS"]
 
@@ -219,18 +257,23 @@ moderation:
  # By default, only the users with "ticket_access" role mentioned in config.yml has access to these commands
 tickets:
   ticket-add: 
+    load: true
     RolesRequired: [] 
     DiscordPermissions: []
   ticket-menu: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   ticket-panel: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   ticket-remove: 
+    load: true
     RolesRequired: [] 
     DiscordPermissions: []
   ticket-rename: 
+    load: true
     RolesRequired: [] 
     DiscordPermissions: []
 
@@ -241,18 +284,23 @@ tickets:
 ##################
 staff:
   assign: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   demote: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   hire: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   promote: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   resign: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   
@@ -265,35 +313,46 @@ staff:
 ######################
 utilities:
   botinfo: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   calculator: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   embed: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   emoteid: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   help: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   invites: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   message: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["ADMINISTRATOR"]
   poll: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD"]
   serverinfo: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []
   steal-emoji: 
+    load: true
     RolesRequired: []
     DiscordPermissions: ["MANAGE_GUILD"]
   userinfo: 
+    load: true
     RolesRequired: []
     DiscordPermissions: []

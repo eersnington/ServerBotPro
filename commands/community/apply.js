@@ -1,5 +1,6 @@
 const {MessageButton,MessageActionRow} = require('discord.js');
 const performance = require('perf_hooks').performance;
+const moment = require('moment');
 let cooldown = new Set();
 
 module.exports = {
@@ -125,9 +126,11 @@ module.exports = {
                 
                 cooldown.delete(message.author.id)
                 if (reason === "submitted"){
+
+                    let responseText = (msg.content.length > 170) ? `${msg.content.substring(0, 170)}...` : msg.content;
                     
                     const mappedResponses = collected.map((msg)=> {
-                        return `**${questions[endCounter++]}**\n${msg.content}`
+                        return `**${questions[endCounter++]}**\n${responseText}`
                     }).join('\n\n')
 
                     const row = new MessageActionRow()
@@ -149,7 +152,7 @@ module.exports = {
                     .setThumbnail(message.author.displayAvatarURL({dynamic: true}))
                     .setAuthor(message.author.tag, message.author.displayAvatarURL({dynamic: true}))
                     .setTimestamp()
-                    .setDescription(`${mappedResponses}\n\n**Duration**\n${(Math.round(timerEnd-timerStart)/60000).toFixed(2)} mins`);
+                    .setDescription(`${mappedResponses}\n\n**Duration**\n${moment.duration((Math.round(timerEnd-timerStart)).toFixed(2)).format(" m [mins], s [secs]")}`); // 
 
                     appsChannel.send({embeds: [embedSubmission], components:[row]}).then(m =>{
 

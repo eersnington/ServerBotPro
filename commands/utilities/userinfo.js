@@ -4,7 +4,7 @@ module.exports = {
     name: 'userinfo',
     description: 'Tells you the user info',
     usage: 'userinfo <@user>',
-    aliases: ['userinfo-command', 'uinfo', 'whois'],
+    aliases: ['userinfo-command', 'uinfo', 'whois', 'stats'],
     args: 0,
     requiredRoles: [],
     requiredPerms: [],
