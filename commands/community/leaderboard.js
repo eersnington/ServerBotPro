@@ -58,11 +58,11 @@ module.exports = {
         let vcCount = 1;
 
         msgEmbedDesc = `**Top Message Activity**\n`
-        messageCounts.slice(0, 25).forEach((array)=>{msgEmbedDesc = msgEmbedDesc  + `\n**#${msgCount++} ${array[0]} ≫** ${array[1]}`})
+        messageCounts.slice(0, 25).forEach((array)=>{msgEmbedDesc = msgEmbedDesc  + `\n**#${msgCount++} ${array[0]} »** ${array[1]}`})
         msgEmbed.setDescription(msgEmbedDesc);
 
         vcEmbedDesc = `**Top Voice Chat Activity**\n`
-        vcCounts.slice(0, 25).forEach((array)=>{vcEmbedDesc = vcEmbedDesc  + `\n**#${vcCount++} ${array[0]} ≫** \`${moment.duration(array[1]).format(" H [hrs], m [mins], s [secs]")}\``})
+        vcCounts.slice(0, 25).forEach((array)=>{vcEmbedDesc = vcEmbedDesc  + `\n**#${vcCount++} ${array[0]} »** \`${moment.duration(array[1]).format(" H [hrs], m [mins], s [secs]")}\``})
         vcEmbed.setDescription(vcEmbedDesc);
 
         const row = new MessageActionRow()
@@ -81,9 +81,9 @@ module.exports = {
         message.channel.send({embeds:[embed], components: [row]}).then(async embed => {
 
             const buttonFilter = (interaction) => interaction.user.id == message.author.id;
-            const collector = message.channel.createMessageComponentCollector({buttonFilter, max:6});
+            const collector = message.channel.createMessageComponentCollector({buttonFilter, max:2});
 
-            collector.on("collect", (interaction)=>{
+            collector.on("collect", async (interaction)=>{
 
                 interaction.deferUpdate();
                 if (interaction.customId === 'message-top' && interaction.message.id == embed.id) embed.edit({embeds: [msgEmbed]});

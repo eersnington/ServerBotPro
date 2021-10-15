@@ -54,7 +54,7 @@ module.exports = {
             let i = 1;
 
             embedDesc = `**Top Invites**\n`
-            invitesCount.slice(0, 25).forEach((array)=>{embedDesc = embedDesc  + `\n**#${i++} ${array[0]} ≫** ${array[1]}`})
+            invitesCount.slice(0, 25).forEach((array)=>{embedDesc = embedDesc  + `\n**#${i++} ${array[0]} »** ${array[1]}`})
             embed.setDescription(embedDesc);
             return message.channel.send({embeds: [embed]});
         }
