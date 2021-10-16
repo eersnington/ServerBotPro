@@ -43,8 +43,8 @@ logs_toggle:
   message_edit: true
   mutes: true
   role_add: true
-  role_position_update: true
-  role_permission_update: true
+  role_position_update: false # Note: This might spam a lot
+  role_permission_update: true 
   role_remove: true
   server_boost: true
   ticket_close: true

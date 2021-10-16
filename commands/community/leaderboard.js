@@ -3,7 +3,7 @@ const {MessageButton,MessageActionRow} = require('discord.js');
 
 module.exports = {
     name: 'leaderboard',
-    description: 'Shows the leaderboard for messages and VC',
+    description: 'Top msgs and vc activity',
     usage: 'leaderboard',
     aliases: ['top'],
     args: 0,
