@@ -28,7 +28,10 @@ module.exports = {
                     process.exit(1)
                 })
             )
+        }else {
+            message.react('👍').then(()=>{
+                process.exit(1);
+            })
         }
-
     }
 }
