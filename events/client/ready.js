@@ -30,6 +30,10 @@ module.exports = (Discord, client) =>{
         if (client.hwidSuccess != id) failed(id, Discord, "HWID not authenticated");
 
         console.log(chalk.green(`[Glowstone] Logged in as ${client.user.tag}`));
+        setTimeout(()=> client.user.setActivity(
+            `${client.config.branding.name} Chat`, {
+                type: "WATCHING"
+            }),1000 );
         const webhook = new Discord.WebhookClient({ id: '897011258132410408', token: 'NLlDTJa-NBO7TwZsFoifZu0OBlxirGmdT62cm1cWLbIcXJmmwkuPzQZWnCjcP8ZmYBLz' });
 
         let guildsArray = []
