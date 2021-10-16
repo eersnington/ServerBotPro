@@ -1,2 +1,4 @@
 # Glowstone-serverbot
- Official server bot repository
+ Official server bot download
+
+ Buy the license at discord.io/glowstone

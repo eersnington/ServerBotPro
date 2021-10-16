@@ -28,14 +28,15 @@ branding:
 # Whitelists are users that can bypass any specific permissions required to execute a command. 
 # In short, they get full access to the bot. Right click the user and copy-paste their id in the given format.
 bot:
-  token: "ODgwNjQxMjA2NzI2NTYxODUz.YShPCQ.fA_zyiwjkt5__k8OvifBgihTPTI"
+  token: "discord-bot-token"
   prefix: "!"
   whitelist:
     - "714736434782666752"
+    - "your-account-id-here"
 
 
 # Suggestions channel where new suggestions will get sent to
-suggestions_channel: "861787498762076180"
+suggestions_channel: "channel-id"
 
 
 ##################################################
@@ -49,13 +50,13 @@ suggestions_channel: "861787498762076180"
 # Next below is the helper role, then the moderator, then the admin.
 # In order to promote or demote a staff, their highest colored role should be in here. Or it wont work.
 
-join_role: "856035189695315978" # The role given to users upon joining
+join_role: "member-role" # The role given to users upon joining
 
 # These are the roles that the bot will not be able to add or remove with .promote/.demote/.hire/.assign commands
 # You should add the owner or the * role here to prevent people from giving dangerous roles to users or their alts.
 blacklisted_roles:
-  - "855869726328356894"
-  - "855868640674578463"
+  - "owner-role"
+  - "*-role"
 
 
 ############################################################
@@ -77,7 +78,7 @@ blacklisted_roles:
 # Note: If you leave any blank like this -> "" then it will not be added to the embed.
 welcome_settings:
   welcome_message: true
-  welcome_channel_id: "879762306177847356"
+  welcome_channel_id: "channel-id"
   embed_title: "Welcome to Glowstone Development"
   embed_description: "**%USERNAME%** has joined the server\n\nWelcome to Glowstone Development\n\n**➠ Store:** %STORE%\n**➠ Total members:** %TOTAL_MEMBERS%\n**➠ Support:** %#872886189164732446%"
   embed_thumbnail: "%USER_AVATAR%" # You can only use an image link or %USER_AVATAR% and %SERVER_ICON%.
@@ -96,7 +97,7 @@ welcome_settings:
 # %USERTAG% - The @ user tag
 
 ticket_settings:
-  ticket_access: "879762308874788894" # Users with this role will be added to new tickets. All staff members should have this role to be added to tickets
+  ticket_access: "staff-role-id" # Users with this role will be added to new tickets. All staff members should have this role to be added to tickets
   ticket_panel_title: "🎟️ Tickets"
   ticket_panel_message1: "> Hey! Feel free to create a ticket if you need help with regarding our services, or want to contact the support team."
   ticket_panel_message2: "Hello there %USERTAG%, \n The staff will be here as soon as possible. Meanwhile please state the following clearly.\n\n> Your IGN: \n> Your Issue:\n\nThank You!"
@@ -111,14 +112,17 @@ ticket_settings:
 
 
 application_settings:
-  applications_channel: "879762316936220742" # Submitted applications gets sent here
+  applications_channel: "channel-id" # Submitted applications gets sent here
   questions: 
+    - "What is your IGN?"
     - "What is your age?"
+    - "Tell us what language(s) do you speak fluently."
     - "What is your timezone?"
+    - "Are you able to perform voice calls through Discord?"
+    - "Are you able to record and upload videos?"
+    - "Why do you want to become a staff member?"
     - "If you were in a situation that you didn't know how to handle, what would you do?"
     - "How much time can you dedicate to your staff duties in hours / week?"
-    - "Are you familiar with installing and handling our services(or similar servics)? If yes, then list a few of them."
-    - "What all experience(s) you have with different programming languages?"
     - "Have you ever been staff on any other servers? If so, what kind of experience do you have?"
   accepted_response: "Hey your application was reviewed by the management, and we would like to inform you that your application has been accepted.\nPlease message an Admin to get started with your interview."
   rejected_response: "Hey your application was reviewed by the management, and we are sorry to inform you that your application has been rejected."
@@ -139,16 +143,16 @@ automod_settings:
     enabled: true
     ignored_domains: ["www.youtube.com", "youtu.be", "gyazo.com", "tenor.com"] # these domains will be whitelisted
     ignored_links: ["https://glowstonedev.tebex.io/", "https://discord.gg/pYXsJxkBU3", "discord.gg/pYXsJxkBU3"]
-    ignored_channels: ["856545475372384258", "channel-id-2"] # Will not automoderate in these channels
+    ignored_channels: ["channel-id-1", "channel-id-2"] # Will not automoderate in these channels
     ignored_users: ["user-id-1", "user-id-2"] # Will not automoderate these users
-    ignored_roles: ["879762308874788894"]
+    ignored_roles: ["role-id-1", "role-id-2"]
     punishment: ["Mute", "1h"] # Format [Punishment type, duration], Available options "Mute", "Kick" or "Ban" (case sensitive). In duration, if you type "null", then it will be permanent
   profanity:
     enabled: true
     list: ["nigger", "chink", "nigga"] # List of blacklisted words.
     ignored_channels: ["channel-id-1", "channel-id-2"]
     ignored_users: ["user-id-1", "user-id-2"]
-    ignored_roles: ["879762308874788894"]
+    ignored_roles: ["role-id-1", "role-id-2"]
     punishment: ["Mute", "1h"] 
   anti_spam:
     enabled: true # Will trigger for wall of text, mass mentions and 
@@ -157,12 +161,12 @@ automod_settings:
     max_interval: "5s" # Amount of time in which messages are considered spam.
     ignored_channels: ["channel-id-1", "channel-id-2"]
     ignored_users: ["user-id-1", "user-id-2"]
-    ignored_roles: ["879762308874788894"]
+    ignored_roles: ["role-id-1", "role-id-2"]
     punishment: ["1h"] # Only mute option is available here
   ip: # Check if some1 sent ips in chat
     enabled: true
     ignored_channels: ["channel-id-1", "channel-id-2"]
     ignored_users: ["user-id-1", "user-id-2"]
-    ignored_roles: ["879762308874788894"]
+    ignored_roles: ["role-id-1", "role-id-2"]
     punishment: ["Mute", "12h"]
     
