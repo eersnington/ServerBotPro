@@ -127,10 +127,8 @@ module.exports = {
                 cooldown.delete(message.author.id)
                 if (reason === "submitted"){
 
-                    let responseText = (msg.content.length > 170) ? `${msg.content.substring(0, 170)}...` : msg.content;
-                    
                     const mappedResponses = collected.map((msg)=> {
-                        return `**${questions[endCounter++]}**\n${responseText}`
+                        return `**${questions[endCounter++]}**\n${(msg.content.length > 170) ? `${msg.content.substring(0, 170)}...` : msg.content}`
                     }).join('\n\n')
 
                     const row = new MessageActionRow()

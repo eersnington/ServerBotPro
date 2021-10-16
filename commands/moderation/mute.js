@@ -1,15 +1,5 @@
 const ms = require('ms')
 
-/**
- * Mutes structure
- * {    user:{
- *          date:
- *          duration:
- *      }
- * }
- * 
- */
-
 module.exports = {
     name: 'mute',
     description: 'Mute a user',

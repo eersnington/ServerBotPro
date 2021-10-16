@@ -5,7 +5,7 @@ module.exports = {
     description: 'Prevent new users from joining',
     usage: 'antijoin <on/off/list>',
     aliases: ['antijoin', 'aj'],
-    args: 2,
+    args: 1,
     requiredRoles: [],
     requiredPerms: [],
     async execute(client, Discord, message, args){
