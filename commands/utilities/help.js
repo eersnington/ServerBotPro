@@ -70,10 +70,16 @@ module.exports = {
             
             const noArguments = new Discord.MessageEmbed()
                 .setAuthor(`Help Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*Click on the button that corresponds to your command help needs!*
-                \n🛠️ **» Utility Commands**\n🎪 **» Community Commands**\n🚫 **» Staff Commands**\n🚨 **» Admin Commands**\n
-                **Note: ** *Some of these categories contain sub categories!*
-                `)
+                .setDescription('*Choose a category from the below drop down menu!*\n' + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃\n\n' 
+                +'**[ 🛠️ ] ➯ Utility commands**\n'
+                +'**[ 🎪 ] ➯ Community commands**\n'
+                +'**[ 🚫 ] ➯ Staff commands**\n'
+                +'**[ 🎟️ ] ➯ Ticket commands**\n'
+                +'**[ 🔨 ] ➯ Moderation commands**\n'
+                +'**[ 🚨 ] ➯ Admin commands**\n'
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note:** *Some of these categories contain/are sub categories!*\n`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -81,10 +87,11 @@ module.exports = {
 
             const utilityEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🛠️  Utility Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of utility commands!*
-                \n${utilitiesCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🛠️ ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of utility commands!*\n\n'
+                + `${utilitiesCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -92,11 +99,14 @@ module.exports = {
             
             const staffEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🚫  Staff Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of staff commands!*
-                \n🔨 **» Moderation Menu**\n🎟️ **» Tickets Menu**
-                \n${staffCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🚫 ]▃▃▃▃▃▃▃▃▃▃▃**\n\n'
+                +'**[ 🎟️ ] ➯ Ticket commands**\n'
+                +'**[ 🔨 ] ➯ Moderation commands**\n\n'
+                + '*List of staff commands!*\n'
+                + `${staffCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -104,10 +114,11 @@ module.exports = {
 
                 const ticketEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🎟️ Tickets Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of ticket commands!*
-                \n${ticketCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🎟️ ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of ticket commands!*\n\n'
+                + `${ticketCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -115,10 +126,11 @@ module.exports = {
 
             const moderationEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🔨 Moderation Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of moderation commands!*
-                \n${moderationCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🔨 ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of moderation commands!*\n\n'
+                + `${moderationCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -126,10 +138,11 @@ module.exports = {
                 
             const adminEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🚨 Admin Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of admin commands!*
-                \n${adminCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🚨 ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of admin commands!*\n\n'
+                + `${adminCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -137,11 +150,14 @@ module.exports = {
             
             const communityEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🎪 Community Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of community commands!*
-                \n🕹️ **» Game Commands**\n🌆 **» Image Commands**
-                \n${communityCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🎪 ]▃▃▃▃▃▃▃▃▃▃▃**\n\n'
+                +'**[ 🕹️ ] ➯ Game Commands**\n'
+                +'**[ 🌆 ] ➯ Image Commands**\n\n'
+                + '*List of community commands!*\n'
+                + `${communityCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -149,10 +165,11 @@ module.exports = {
 
             const gamesEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🕹️ Games Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of community commands!*
-                \n${gamesCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🕹️ ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of game commands!*\n\n'
+                + `${gamesCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -160,10 +177,11 @@ module.exports = {
             
             const imagesEmbed = new Discord.MessageEmbed()
                 .setAuthor(`🌆 Images Menu`, message.guild.iconURL({ dynamic: true }))
-                .setDescription(`*List of image commands!*
-                \n${funCommands.join(`\n`)}
-                \n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*
-                `)
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🌆 ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of image commands!*\n\n'
+                + `${funCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
                 .setThumbnail(message.guild.iconURL())
                 .setColor(client.config.branding.embed_color)
                 .setTimestamp()
@@ -187,7 +205,7 @@ module.exports = {
                     },{
                         label:"Staff Commands",
                         value: "staff",
-                        description: "Staff utility to control server activity!",
+                        description: "Staff commands to manage staff position!",
                         emoji: "🚫"
                     },{
                         label:"Admin Commands",
@@ -225,12 +243,12 @@ module.exports = {
                     {
                         label:"Moderation",
                         value: "mod",
-                        description: "Moderation commands to keep the server under control",
+                        description: "Moderation commands to keep control of server activity!",
                         emoji: "🔨"
                     },{
                         label:"Tickets",
                         value: "ticket",
-                        description: "Ticket commands to help staff manage tickets",
+                        description: "Ticket commands to help staff manage tickets!",
                         emoji: "🎟️"
                     }
                 ])
