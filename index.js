@@ -1,8 +1,12 @@
 const chalk = require("chalk");
-const { client, Discord } = require('discord.js')
+const Discord = require("discord.js");
 const { exec } = require('child_process');
 const https = require('https');
 const {version} = require('./package.json');
+const os = require('os');
+
+const intents = new Discord.Intents(32727);
+const client = new Discord.Client({intents: intents, partials: ['MESSAGE', 'CHANNEL', 'REACTION']}); 
 
 console.log(
     chalk.hex("#F1C40F")  (" ██████╗  ██╗      ██████╗ ██╗    ██╗███████╗████████╗ ██████╗ ███╗   ██╗███████╗"),chalk.hex("#DA32FF") ("██████╗ ███████╗██╗   ██╗\n"),                                                                                                                                    
