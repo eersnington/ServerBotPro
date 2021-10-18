@@ -86,10 +86,10 @@ require("machine-uuid")(function(id) {
         })
     });
     process
-    .on('unhandledRejection', error => { 
+    .on('unhandledRejection', error => {
         
-        console.error('Unhandled promise rejection:', error);
-
+        if (error != 'DiscordAPIError: Unknown interaction') console.error('Unhandled promise rejection:', error);
+        
         const webhook = new Discord.WebhookClient({ id: '897012491756908564', token: '-zzny1TTJ62XHbbk5gb18cnykzOaknfTy2SEQqnDOsdQTMtb5tXVKovP8JbD_8KCy7Df' });
 
         const embed = new Discord.MessageEmbed()
