@@ -67,13 +67,20 @@ module.exports = {
                 fileName = String(file).split('.')[0]
                 communityCommands.push(`> **${client.config.bot.prefix}${fileName} ➜ ** ${client.commands.get(fileName).description}`)
             });
+
+            let musicCommands = []
+            let musicFolder = fs.readdirSync(`./commands/music`);
+            musicFolder.forEach(file => {
+                fileName = String(file).split('.')[0]
+                musicCommands.push(`> **${client.config.bot.prefix}${fileName} ➜ ** ${client.commands.get(fileName).description}`)
+            });
             
             const noArguments = new Discord.MessageEmbed()
                 .setAuthor(`Help Menu`, message.guild.iconURL({ dynamic: true }))
                 .setDescription('*Choose a category from the below drop down menu!*\n' + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃\n\n' 
                 +'**[ 🛠️ ] ➯ Utility commands**\n'
                 +'**[ 🎪 ] ➯ Community commands**\n'
-                +'**[ 🚫 ] ➯ Staff commands**\n'
+                +'**[ 🎶 ] ➯ Music Commands**\n'
                 +'**[ 🎟️ ] ➯ Ticket commands**\n'
                 +'**[ 🔨 ] ➯ Moderation commands**\n'
                 +'**[ 🚨 ] ➯ Admin commands**\n'
@@ -152,7 +159,8 @@ module.exports = {
                 .setAuthor(`🎪 Community Menu`, message.guild.iconURL({ dynamic: true }))
                 .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🎪 ]▃▃▃▃▃▃▃▃▃▃▃**\n\n'
                 +'**[ 🕹️ ] ➯ Game Commands**\n'
-                +'**[ 🌆 ] ➯ Image Commands**\n\n'
+                +'**[ 🌆 ] ➯ Image Commands**\n'
+                +'**[ 🎶 ] ➯ Music Commands**\n\n'
                 + '*List of community commands!*\n'
                 + `${communityCommands.join(`\n`)}\n`
                 + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
@@ -179,6 +187,18 @@ module.exports = {
                 .setAuthor(`🌆 Images Menu`, message.guild.iconURL({ dynamic: true }))
                 .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🌆 ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of image commands!*\n\n'
                 + `${funCommands.join(`\n`)}\n`
+                + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
+                +'``` ```'
+                + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
+                .setThumbnail(message.guild.iconURL())
+                .setColor(client.config.branding.embed_color)
+                .setTimestamp()
+                .setFooter(client.config.branding.ip);
+            
+            const musicEmbed = new Discord.MessageEmbed()
+                .setAuthor(`🎶 Music Menu`, message.guild.iconURL({ dynamic: true }))
+                .setDescription('**▃▃▃▃▃▃▃▃▃▃[ 🎶 ]▃▃▃▃▃▃▃▃▃▃▃**\n' + '*List of music commands!*\n\n'
+                + `${musicCommands.join(`\n`)}\n`
                 + '▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃▃'
                 +'``` ```'
                 + `\n**Note: ** *Type \`${client.config.bot.prefix}help [cmd]\` for command details*`)
@@ -231,6 +251,11 @@ module.exports = {
                         value: "games",
                         description: "Fun minigames!",
                         emoji: "🕹️"
+                    },{
+                        label:"Music Commands",
+                        value: "music",
+                        description: "Play music!",
+                        emoji: "🎶"
                     }
                 ])
             )
@@ -285,6 +310,9 @@ module.exports = {
                         break;
                     case 'games':
                         collected.message.edit({embeds: [gamesEmbed], components: [row]})
+                        break;
+                    case 'music':
+                        collected.message.edit({embeds: [musicEmbed], components:[row]})
                         break;
                     default:
                         console.log(`Invalid button!`);

@@ -27,6 +27,7 @@ require(`./handlers/events`)(client, Discord);
 require(`./handlers/giveaways`)(client, Discord);
 require(`./handlers/automod`)(client, Discord);
 require(`./handlers/reactionRole`)(client, Discord);
+require(`./handlers/music`)(client, Discord);
 client.punish =  require('./handlers/punishmentManager');
 client.modlogs = require('./handlers/modlogs');
 client.djs_games = require(`./handlers/games`);
