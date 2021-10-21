@@ -133,6 +133,36 @@ fun:
   wanted: 
     RolesRequired: []
     DiscordPermissions: []
+    
+##################
+#----------------#
+# MUSIC COMMANDS #
+#----------------#
+##################
+
+music:
+  pause: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  play: 
+    RolesRequired: []
+    DiscordPermissions: []
+  queue: 
+    RolesRequired: []
+    DiscordPermissions: []
+  resume: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  shuffle: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  skip: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  volume: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+ 
 
 ##################
 #----------------#
@@ -175,6 +205,7 @@ games:
 # MODERATION COMMANDS #
 #---------------------#
 #######################
+
 moderation:
   anti-join: 
     RolesRequired: []
