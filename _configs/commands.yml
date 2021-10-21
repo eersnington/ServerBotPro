@@ -170,6 +170,7 @@ music:
 #----------------#
 ##################
 
+
 # Suggestion: Leave these blank and let every member use these commands
 games:
   connect4: 
@@ -247,6 +248,7 @@ moderation:
 #-----------------#
 ###################
 
+
  # By default, only the users with "ticket_access" role mentioned in config.yml has access to these commands
 tickets:
   ticket-add: 
@@ -294,6 +296,7 @@ staff:
 # UTILITIES COMMANDS #
 #--------------------#
 ######################
+
 utilities:
   botinfo: 
     RolesRequired: []
