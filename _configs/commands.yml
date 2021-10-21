@@ -133,12 +133,43 @@ fun:
   wanted: 
     RolesRequired: []
     DiscordPermissions: []
+    
+##################
+#----------------#
+# MUSIC COMMANDS #
+#----------------#
+##################
+
+music:
+  pause: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  play: 
+    RolesRequired: []
+    DiscordPermissions: []
+  queue: 
+    RolesRequired: []
+    DiscordPermissions: []
+  resume: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  shuffle: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  skip: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+  volume: 
+    RolesRequired: []
+    DiscordPermissions: ["MANAGE_GUILD"]
+ 
 
 ##################
 #----------------#
 # GAMES COMMANDS #
 #----------------#
 ##################
+
 
 # Suggestion: Leave these blank and let every member use these commands
 games:
@@ -175,6 +206,7 @@ games:
 # MODERATION COMMANDS #
 #---------------------#
 #######################
+
 moderation:
   anti-join: 
     RolesRequired: []
@@ -216,6 +248,7 @@ moderation:
 #-----------------#
 ###################
 
+
  # By default, only the users with "ticket_access" role mentioned in config.yml has access to these commands
 tickets:
   ticket-add: 
@@ -239,6 +272,7 @@ tickets:
 # STAFF COMMANDS #
 #----------------#
 ##################
+
 staff:
   assign: 
     RolesRequired: []
@@ -263,6 +297,7 @@ staff:
 # UTILITIES COMMANDS #
 #--------------------#
 ######################
+
 utilities:
   botinfo: 
     RolesRequired: []
