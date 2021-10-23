@@ -123,14 +123,25 @@ module.exports = async (Discord, client, interaction) => {
 
             const channel = interaction.channel
             const tickerUsers = []
-            const users = []
 
             let ticketLogsChannel = client.channels.cache.get(client.logs.log_channels_ids.ticket_logs_id)
             let ticketOpenDB = client.db.get('ticketOpen');
 
-            channel.members.each(user => {
-                users.push(user.user.id)
-                tickerUsers.push(`<@${user.user.id}>`)
+            const non_staff = new Discord.Collection();
+
+            channel.members.each(member => {
+
+                tickerUsers.push(`<@${member.user.id}>`);
+
+                if (ticketOpenDB[member.user.id]){
+                    delete ticketOpenDB[member.user.id];
+                    client.db.set('ticketOpen', ticketOpenDB);
+                }
+                if(!member.roles.cache.has(client.config.ticket_settings.ticket_access) && !member.permissions.has(['ADMINISTRATOR'])){
+
+                    non_staff.set(member.user.id, member);
+                    channel.permissionOverwrites.edit(member, { VIEW_CHANNEL: false });
+                }
             })
 
             const ticketEmbed = new Discord.MessageEmbed()
@@ -140,24 +151,6 @@ module.exports = async (Discord, client, interaction) => {
             .addField('Users in transcript', `${tickerUsers.join()}`, true)
             .setTimestamp()
             .setFooter(`${client.config.branding.name} Support System`, interaction.guild.iconURL({dynamic: true}));
-
-            const non_staff = new Discord.Collection();
-
-            users.forEach(user =>{
-                let player = channel.members.find(member => member.id == user);
-
-                if (ticketOpenDB[user]){
-                    delete ticketOpenDB[user];
-                    client.db.set('ticketOpen', ticketOpenDB);
-                }
-                if(!player.roles.cache.has(client.config.ticket_settings.ticket_access) && !player.permissions.has(['ADMINISTRATOR'])){
-
-                    let ticketUser = channel.members.get(user);
-                    non_staff.set(ticketUser.id, ticketUser);
-                    
-                    channel.permissionOverwrites.edit(user, { VIEW_CHANNEL: false });
-                }
-            });
 
             const embed1 = new Discord.MessageEmbed()
             .setColor(client.config.branding.embed_color)
