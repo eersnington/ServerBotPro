@@ -1,2 +1,2 @@
-# Glowstone-serverbot
- Official server bot repository
+# Discord server bot
+Discord Server Bot
